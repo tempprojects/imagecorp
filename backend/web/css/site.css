@@ -1,0 +1,27 @@
+label, input, button, select, textarea {
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+}
+.side-nav li a[data-toggle="collapse"]:before {
+    content: '+';
+}
+img.preview{
+    width: 150px;
+    margin-right: 15px;
+}
+.typeGallery{
+    margin-right: 15px;
+}
+.wrap {
+    margin-left: 250px;
+}
+.sidebar {
+    width: 240px;
+}
+.previewSlide{
+    height: 60px;
+}
+.dropdown:hover ul#w2{
+    display: block;
+}
