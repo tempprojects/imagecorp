@@ -39,7 +39,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
     </div>
-    <?php //print_r(\Yii::$app); die(); ?>
+
     <strong>Copyright &copy; 2016 <a href="<?= \Yii::$app->params['site'];?>">Image Corp</a>.</strong> All rights
     reserved.
 </footer>
