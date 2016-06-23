@@ -3,6 +3,7 @@
 namespace common\models\database;
 
 use Yii;
+use common\models\database\Question;
 
 /**
  * This is the model class for table "test".
@@ -60,5 +61,11 @@ class Test extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
         ];
+    }
+    
+    //Rull connection to Question model(table)
+    public function getQuestion()
+    {
+        return $this->hasMany(Question::className(), ['test_id' => 'id']);
     }
 }

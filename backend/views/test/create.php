@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\database\Test */
 
+
 $this->title = 'Create Test';
 $this->params['breadcrumbs'][] = ['label' => 'Tests', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,7 +27,7 @@ $this->endBlock();
         <?= $this->render('_form', [
             'model' => $model,
             'img' => $img,
-            'update' => false
+            'update' => false,
         ]) ?>
     </div>
 </div>

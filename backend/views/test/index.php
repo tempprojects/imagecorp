@@ -64,6 +64,14 @@ $this->endBlock();
                     'format' =>  ['date', 'dd.MM.Y'],
                     'options' => ['width' => '200']
                 ],
+                [
+                    'header' => Yii::t('user', 'Количество вопросов'),
+                    'value' => function ($model) {
+                        //return  "<a href='" . $model->id . "'> " . count($model->question) . " вопросов</a>";
+                        return Html::a('Количество вопросов: ' . count($model->question), ['question/test', 'id' => $model->id], ['title' => Yii::t('app', 'Количество вопросов')]);
+                    },
+                    'format' => 'raw',
+                ],
 //                 'updated_at',
                 // 'created_at',
 
