@@ -35,7 +35,6 @@ class SecurityController extends BaseController
         $model = Yii::createObject(LoginForm::className());
         $event = $this->getFormEvent($model);
         $this->performAjaxValidation($model);
-        
         $this->trigger(self::EVENT_BEFORE_LOGIN, $event);
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);

@@ -22,6 +22,7 @@ class MediaController extends \yii\web\Controller
 
     public function actionIndex($type = 0)
     {
+
         if($type){
             $model = Gallery::find()->where(['type' => $type])->orderBy(['id' => SORT_DESC])->all();
         }
