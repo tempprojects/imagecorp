@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         
         <?php if(isset($id) && $id){
-            echo Html::a('Добавить вопрос к тесту #' . $id , ['question/create', 'id' => $id] , ['class' => 'btn btn-success']);
+            echo Html::a('Добавить вопрос к тесту №' . $id , ['question/create', 'id' => $id] , ['class' => 'btn btn-success']);
         }?>
     </p>
     <?= GridView::widget([

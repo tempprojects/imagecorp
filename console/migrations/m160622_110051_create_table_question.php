@@ -27,6 +27,9 @@ class m160622_110051_create_table_question extends Migration
             'title' => $this->text()->notNull(),
             'subtitle' => $this->text()->defaultValue(NULL),
             'priority' => $this->tinyint()->defaultValue(NULL),
+            'buttton_text' => $this->string(60)->defaultValue(NULL),
+            'image_id' => $this->integer()->defaultValue(NULL),
+            'description' => $this->text()->defaultValue(NULL),
         ],$tableOptions);
 
         // creates index for column `test_id`
@@ -62,6 +65,22 @@ class m160622_110051_create_table_question extends Migration
             'id',
             'CASCADE'
         );
+        // creates index for column `image_id`
+        $this->createIndex(
+            'idx-question-image_id',
+            'question',
+            'image_id'
+        );
+
+        // add foreign key for table `gallery`
+        $this->addForeignKey(
+            'fk-question-image_id',
+            'question',
+            'image_id',
+            'gallery',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**
@@ -78,7 +97,7 @@ class m160622_110051_create_table_question extends Migration
         // drops index for column `test_id`
         $this->dropIndex(
             'idx-question-test_id',
-            'uestion'
+            'question'
         );
 
         // drops foreign key for table `test`
@@ -90,6 +109,18 @@ class m160622_110051_create_table_question extends Migration
         // drops index for column `question_type_id`
         $this->dropIndex(
             'idx-question-question_type_id',
+            'question'
+        );
+
+        // drops foreign key for table `gallery`
+        $this->dropForeignKey(
+            'fk-question-image_id',
+            'question'
+        );
+
+        // drops index for column `image_id`
+        $this->dropIndex(
+            'idx-question-image_id',
             'question'
         );
 

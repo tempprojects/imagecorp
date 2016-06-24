@@ -13,7 +13,7 @@ use yii\grid\GridView;
 <div class = "row">
     <div class="col-sm-6">
         <?php 
-            echo Html::a('Добавить ответ к вопросу #' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
+            echo Html::a('Добавить ответ к вопросу №' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
         ?>
     </div>
     <div class="col-sm-6">

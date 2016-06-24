@@ -46,6 +46,38 @@ class m160622_094620_create_table_answer extends Migration
             'id',
             'CASCADE'
         );
+        // creates index for column `main_image_id`
+        $this->createIndex(
+            'idx-answer-main_image_id',
+            'answer',
+            'main_image_id'
+        );
+
+        // add foreign key for table `gallery`
+        $this->addForeignKey(
+            'fk-answer-main_image_id',
+            'answer',
+            'main_image_id',
+            'gallery',
+            'id',
+            'CASCADE'
+        );
+        // creates index for column `sub_image_id`
+        $this->createIndex(
+            'idx-answer-sub_image_id',
+            'answer',
+            'sub_image_id'
+        );
+
+        // add foreign key for table `gallery`
+        $this->addForeignKey(
+            'fk-answer-sub_image_id',
+            'answer',
+            'sub_image_id',
+            'gallery',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**
@@ -62,6 +94,28 @@ class m160622_094620_create_table_answer extends Migration
         // drops index for column `question_id`
         $this->dropIndex(
             'idx-answer-question_id',
+            'answer'
+        );
+        // drops foreign key for table `gallery`
+        $this->dropForeignKey(
+            'fk-answer-main_image_id',
+            'answer'
+        );
+
+        // drops index for column `main_image_id`
+        $this->dropIndex(
+            'idx-answer-main_image_id',
+            'answer'
+        );
+        // drops foreign key for table `gallery`
+        $this->dropForeignKey(
+            'fk-answer-sub_image_id',
+            'answer'
+        );
+
+        // drops index for column `sub_image_id`
+        $this->dropIndex(
+            'idx-answer-sub_image_id',
             'answer'
         );
 

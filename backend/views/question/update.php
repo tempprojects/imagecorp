@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['test', 'id'
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="question-update">
-    <h1><?= Html::encode($this->title) ?></h1>
     <?= $this->render('_form', [
         'model' => $model,
         'id' => $id,
