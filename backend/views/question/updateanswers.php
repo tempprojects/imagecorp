@@ -5,7 +5,10 @@ use yii\helpers\Html;
 /* @var $id */
 /* @var $template */
 
-$this->title = 'Update Questions';
+$this->title = 'Update Answers';
+
+$this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['test', 'id' => $id]];
+$this->params['breadcrumbs'][] = 'Update Answers';
 ?>
 
 <div class="question-create">

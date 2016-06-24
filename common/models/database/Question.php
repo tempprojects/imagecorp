@@ -13,10 +13,14 @@ use Yii;
  * @property string $title
  * @property string $subtitle
  * @property integer $priority
+ * @property string $button_text
+ * @property integer $image_id
+ * @property string $description
  *
  * @property Answer[] $answers
  * @property QuestionType $questionType
  * @property Test $test
+ * @property Gallery $image
  */
 class Question extends \yii\db\ActiveRecord
 {
@@ -37,11 +41,13 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['test_id', 'question_type_id', 'title', 'answers_cnt'], 'required'],
-            [['test_id', 'question_type_id', 'priority', 'answers_cnt'], 'integer'],
-            [['title', 'subtitle', 'button_text'], 'string'],
+            [['test_id', 'question_type_id', 'title', 'answers_cnt', 'priority'], 'required'],
+            [['test_id', 'question_type_id', 'priority', 'image_id', 'answers_cnt'], 'integer'],
+            [['title', 'subtitle', 'description'], 'string'],
+            [['button_text'], 'string', 'max' => 60],
             [['question_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuestionType::className(), 'targetAttribute' => ['question_type_id' => 'id']],
             [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Test::className(), 'targetAttribute' => ['test_id' => 'id']],
+            [['image_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['image_id' => 'id']],
         ];
     }
 
@@ -57,6 +63,9 @@ class Question extends \yii\db\ActiveRecord
             'title' => 'Title',
             'subtitle' => 'Subtitle',
             'priority' => 'Priority',
+            'button_text' => 'Button Text',
+            'image_id' => 'Image ID',
+            'description' => 'Description',
             'answers_cnt' => 'Answers Count'
         ];
     }
@@ -83,6 +92,14 @@ class Question extends \yii\db\ActiveRecord
     public function getTest()
     {
         return $this->hasOne(Test::className(), ['id' => 'test_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImage()
+    {
+        return $this->hasOne(Gallery::className(), ['id' => 'image_id']);
     }
     
     /*

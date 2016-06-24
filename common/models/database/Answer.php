@@ -17,6 +17,8 @@ use Yii;
  * @property string $value
  *
  * @property Question $question
+ * @property Gallery $mainImage
+ * @property Gallery $subImage
  */
 class Answer extends \yii\db\ActiveRecord
 {
@@ -34,16 +36,19 @@ class Answer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['question_id'], 'required'],
+            [['question_id', 'value'], 'required'],
             [['question_id', 'main_image_id', 'sub_image_id'], 'integer'],
-            [['title', 'description', 'buttton_text', 'value'], 'string'],
+            [['description'], 'string'],
+            [['title', 'buttton_text', 'value'], 'string', 'max' => 255],
             [['question_id'], 'exist', 'skipOnError' => true, 'targetClass' => Question::className(), 'targetAttribute' => ['question_id' => 'id']],
+            [['main_image_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['main_image_id' => 'id']],
+            [['sub_image_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['sub_image_id' => 'id']],
         ];
     }
 
     /**
      * @inheritdoc
-    */
+     */
     public function attributeLabels()
     {
         return [
@@ -64,5 +69,21 @@ class Answer extends \yii\db\ActiveRecord
     public function getQuestion()
     {
         return $this->hasOne(Question::className(), ['id' => 'question_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMainImage()
+    {
+        return $this->hasOne(Gallery::className(), ['id' => 'main_image_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubImage()
+    {
+        return $this->hasOne(Gallery::className(), ['id' => 'sub_image_id']);
     }
 }

@@ -6,6 +6,10 @@ use yii\grid\GridView;
 /* @var $answers_model */
 ?>
 
+<?php 
+    $local_answers_model = clone $answers_model;
+?>
+
 <div class = "row">
     <div class="col-sm-6">
         <?php 
@@ -14,10 +18,11 @@ use yii\grid\GridView;
     </div>
     <div class="col-sm-6">
         <?php 
-            echo Html::a('Редактировать ответи' . $id , ['question/updateanswers', 'id' => $id] , ['class' => 'btn btn-success']);
+            echo ($local_answers_model->getModels()) ? Html::a('Редактировать ответи' . $id , ['question/updateanswers', 'id' => $id] , ['class' => 'btn btn-success']) : " ";
         ?>
     </div>
 </div>
+
 
 <?= 
     GridView::widget([

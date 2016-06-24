@@ -9,12 +9,10 @@ use yii\helpers\Html;
 /* @var $answers_model */
 
 $this->title = 'Update Question: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['test', 'id' => $model->getAttribute('test_id')]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="question-update">
-
     <h1><?= Html::encode($this->title) ?></h1>
     <?= $this->render('_form', [
         'model' => $model,

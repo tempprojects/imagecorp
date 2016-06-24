@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -7,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\database\Question */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['test', 'id' => $model->getAttribute('test_id')]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="question-view">
@@ -29,8 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'test_id',
-            'question_type_id',
+            [   'attribute'=>'test_id',
+                'format' => 'raw',
+                'label' => 'Test',
+                'value' =>  (is_object($model->test))?  $model->test->getAttribute('title') : ""
+            ],
+            [   'attribute'=>'question_type_id',
+                'format' => 'raw',
+                'label' => 'Question Type',
+                'value' =>  (is_object($model->questionType))?  $model->questionType->getAttribute('description') : ""
+            ],
             'title:ntext',
             'subtitle:ntext',
             'priority',

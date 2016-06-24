@@ -94,7 +94,7 @@ class QuestionController extends Controller
      * @return mixed
      */
     public function actionTest($id)
-    {       
+    {
         $searchModel = new QuestionSearch();
         if(isset($id)){
             $searchModel->test_id=$id;
@@ -105,14 +105,6 @@ class QuestionController extends Controller
             'dataProvider' => $dataProvider,
             'id'=> $id
         ]);
-
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        } else {
-//            return $this->render('index', [
-//                'model' => $model,
-//            ]);
-//        }
     }
 
     /**
@@ -123,8 +115,10 @@ class QuestionController extends Controller
     */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+        $test_id = $model->getAttribute('test_id');
+        $model->delete();
+        return $this->redirect(['test', 'id'=>$test_id]);
     }
 
     /**
@@ -143,7 +137,6 @@ class QuestionController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
 
     /**
      * Save All answers
@@ -164,27 +157,15 @@ class QuestionController extends Controller
             }
 
             //save all models
-            
             if($validate_flag){
                 foreach($allAnswers as $answer){
                     $answer->save();
                 }
                 return $this->actionTest($id);
-//                return $this->render('sympletext', [
-//                    'answers_models' => $answers_models,
-//                    'id' => $id
-//                ]);
-
             }
             return $this->actionTest($id);
-//            return $this->render('sympletext', [
-//            'answers_models' => $answers_models,
-//            'id' => $id
-//        ]);
         }
         return $this->actionTest($id);
-
-
     }
 
     /**
@@ -295,7 +276,27 @@ class QuestionController extends Controller
     public function actionUpdateanswers($id)
     {
         $model = $this->findModel($id);
-        return $this->renderingQuestionTypeUpdate($model, '_sympletext');
+        return $this->updateAnswerSwitch($model);
+    }
+    
+    /**
+     * Switch form tampale when create new answers
+     * @param object $model (model of Answer record)
+     * @return mixed
+     */
+    protected function updateAnswerSwitch($model){
+        switch ($model->questionType->getAttribute('slug')) {
+            case 'sympleText':
+                return $this->renderingQuestionTypeUpdate($model, '_sympletext');
+                break;
+            case 'sympleImage':
+                return $this->renderingQuestionTypeUpdate($model, '_sympleimage');
+                break;
+            default:
+                $model->delete();
+                return $this->redirect(['index']);
+                break;
+        }
     }
     
     /*
@@ -324,7 +325,7 @@ class QuestionController extends Controller
             }
             return $this->render('updateanswers', [
                 'answers_models' => $allAnswers,
-                'id' => $model->getAttribite('id'),
+                'id' => $model->getAttribite('test_id'),
                 'template' => $template
             ]);
         }
@@ -335,11 +336,13 @@ class QuestionController extends Controller
 
             return $this->render('updateanswers', [
                 'answers_models' => $allAnswers,
-                'id' => $model->getAttribute('id'),
+                'id' => $model->getAttribute('test_id'),
                 'template' => $template
             ]);
         }
     }
+    
+    
     
     /*
     *    Creating models and rendering SympleText form template  

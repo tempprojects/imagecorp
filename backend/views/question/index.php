@@ -26,13 +26,32 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'test_id',
-            'question_type_id',
             'title:ntext',
-            'subtitle:ntext',
-            // 'priority',
+            [   'attribute'=>'test_id',
+                'format' => 'raw',
+                'label' => 'Test',
+                'value' => function($model) {
+                    $result='';
+                    if(is_object($model->test)){
+                        $result = $model->test->getAttribute('title');
+                    }
+                    return $result;
+                }
+            ],
+            [   'attribute'=>'question_type_id',
+                'format' => 'raw',
+                'label' => 'Question Type',
+                'value' => function($model) {
+                    $result='';
+                    if(is_object($model->questionType)){
+                        $result = $model->questionType->getAttribute('description');
+                    }
+                    return $result;
+                }
+            ],
+            //'subtitle:ntext',
+            'priority',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

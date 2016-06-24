@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use common\models\database\Gyallery;
+use common\models\database\Gallery;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\Test */
