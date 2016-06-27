@@ -8,7 +8,21 @@ use yii\widgets\DetailView;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['test', 'id' => $model->getAttribute('test_id')]];
 $this->params['breadcrumbs'][] = $this->title;
+$this->beginBlock('content-header');
+echo $this->title;
+$this->endBlock();
 ?>
+<div class="question-index">
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+    </div>
+    <div class="box-body">
 <div class="question-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -44,4 +58,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+</div>
 </div>

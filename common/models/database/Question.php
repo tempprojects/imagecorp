@@ -112,5 +112,6 @@ class Question extends \yii\db\ActiveRecord
                 $answer->delete();
             }
         }
+        return true;
     }
 }

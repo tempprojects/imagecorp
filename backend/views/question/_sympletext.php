@@ -20,9 +20,7 @@ use yii\widgets\ActiveForm;
             echo "Вариант # " . $cnt++; 
             //For id of current record in db. In this case we lose the need to pass this parameter in get request!!!
             echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
-            
             echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
-            
             echo $form->field($value, '[' . $key . ']value')->textInput([ 'required' => 'required']);
             echo $form->field($value, '[' . $key . ']description')->textarea(['rows'=>3, 'required' => 'required']);
             echo "<hr>";
