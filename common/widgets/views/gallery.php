@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 ?>
-
 <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#myModalGallery_<?= $idInput ?>" data-backdrop="static">Выбрать картинку</button>
 <div id="myModalGallery_<?= $idInput ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">

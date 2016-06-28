@@ -58,11 +58,7 @@ class QuestionController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
-
-    
-    
-    
+    }   
 
     /**
      * Updates an existing Question model.
@@ -265,6 +261,26 @@ class QuestionController extends Controller
                 break;
             case 'skinColor':
                 return $this->renderingQuestionTypeCreate($model, '_skincolor');
+            case 'aboutMeColour':
+                return $this->renderingQuestionTypeCreate($model, '_aboutmecolour');
+                break;
+            case 'aboutMeTwo':
+                return $this->renderingQuestionTypeCreate($model, '_aboutmetwo');
+                break;
+            case 'aboutMeOne':
+                return $this->renderingQuestionTypeCreate($model, '_aboutmeone');
+                break;
+            case 'coloring':
+                return $this->renderingQuestionTypeCreate($model, '_coloring');
+                break;
+            case 'face':
+                return $this->renderingQuestionTypeCreate($model, '_face');
+                break;
+            case 'hair':
+                return $this->renderingQuestionTypeCreate($model, '_hair');
+                break;
+            case 'eyes':
+                return $this->renderingQuestionTypeCreate($model, '_hair');
                 break;
             default:
                 $model->delete();
@@ -272,8 +288,7 @@ class QuestionController extends Controller
                 break;
         }
     }
-    
-    
+
      /**
      * Updates an existing Answers model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -292,7 +307,7 @@ class QuestionController extends Controller
      * @return mixed
      */
     protected function updateAnswerSwitch($model){
-        switch ($model->questionType->getAttribute('slug')) {
+        switch ($model->questionType->getAttribute('slug')){
             case 'sympleText':
                 return $this->renderingQuestionTypeUpdate($model, '_sympletext');
                 break;
@@ -304,6 +319,26 @@ class QuestionController extends Controller
                 break;
             case 'skinColor':
                 return $this->renderingQuestionTypeCreate($model, '_skincolor');
+            case 'aboutMeColour':
+                return $this->renderingQuestionTypeUpdate($model, '_aboutmecolour');
+                break;
+            case 'aboutMeTwo':
+                return $this->renderingQuestionTypeUpdate($model, '_aboutmetwo');
+                break;
+            case 'aboutMeOne':
+                return $this->renderingQuestionTypeUpdate($model, '_aboutmeone');
+                break;
+            case 'coloring':
+                return $this->renderingQuestionTypeUpdate($model, '_coloring');
+                break;
+            case 'face':
+                return $this->renderingQuestionTypeUpdate($model, '_face');
+                break;
+            case 'hair':
+                return $this->renderingQuestionTypeUpdate($model, '_hair');
+                break;
+            case 'eyes':
+                return $this->renderingQuestionTypeUpdate($model, '_hair');
                 break;
             default:
                 $model->delete();
@@ -311,7 +346,7 @@ class QuestionController extends Controller
                 break;
         }
     }
-    
+
     /*
     *    Creating models and rendering SympleText form template  
     */
@@ -340,7 +375,6 @@ class QuestionController extends Controller
                 'answers_models' => $allAnswers,
                 'id' => $model->getAttribite('id'),
                 'template' => $template,
-
             ]);
         }
         else{
@@ -352,12 +386,9 @@ class QuestionController extends Controller
                 'answers_models' => $allAnswers,
                 'id' => $model->getAttribute('id'),
                 'template' => $template,
-               
             ]);
         }
     }
-    
-    
     
     /*
     *    Creating models and rendering SympleText form template  
@@ -367,6 +398,9 @@ class QuestionController extends Controller
         $answers_models=[];
         if($template=='_skincolor'){
             $model->answers_cnt +=2;
+        }
+        if($template=="_hair" && $model->answers_cnt!=1){
+            $model->answers_cnt*=4;
         }
         for($i=$model->answers_cnt; $i>0; $i--){
             $answer = new Answer();
