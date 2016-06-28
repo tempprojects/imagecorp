@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
 /* @var $answers_model */
 
 ?>
+
 <div class="row">
     <div class="col-md-4 <?= $model->isNewRecord ? "col-md-offset-4" : ""?>">
         <div class="question-form"> 
@@ -23,13 +24,14 @@ use yii\widgets\ActiveForm;
 
             <?= $model->isNewRecord ? $form->field($model, 'question_type_id')->dropDownList($all_types) : $form->field($model, 'question_type_id')->hiddenInput()->label(false); ?>
 
-            <?= $model->isNewRecord ?  $form->field($model, 'answers_cnt')->dropDownList([2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10]) : $form->field($model, 'answers_cnt')->hiddenInput()->label(false); ?>
+            <?= $model->isNewRecord ?  $form->field($model, 'answers_cnt')->dropDownList([1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10]) : $form->field($model, 'answers_cnt')->hiddenInput()->label(false); ?>
 
             <?= $form->field($model, 'title')->textarea(['rows' => 3]) ?>
 
             <?= $form->field($model, 'subtitle')->textarea(['rows' => 3]) ?>
 
             <?= $form->field($model, 'priority')->textInput() ?>
+
 
             <div class="form-group">
                 <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -49,3 +51,5 @@ use yii\widgets\ActiveForm;
             </div>
         <?php endif; ?>
 </div>
+
+<?php $this->registerJsFile('js/myscript.js', ['depends' => 'frontend\assets\AppAsset']); ?>

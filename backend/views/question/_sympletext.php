@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     <?php 
         $cnt = 1;
         foreach($answers_models as $key => $value){
-            echo "Вариант # " . $cnt++; 
+            echo "Вариант № " . $cnt++;
             //For id of current record in db. In this case we lose the need to pass this parameter in get request!!!
             echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
             

@@ -19,7 +19,6 @@ $item = [
 <div class="test-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
     <?= Gallery::widget(['type' => 'tests', 'idInput' => 'test-img', 'img' => $img]); ?>
 
     <div class="row">

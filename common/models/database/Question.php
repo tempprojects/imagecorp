@@ -59,7 +59,7 @@ class Question extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'test_id' => 'Test ID',
-            'question_type_id' => 'Question Type ID',
+            'question_type_id' => 'Question Type',
             'title' => 'Title',
             'subtitle' => 'Subtitle',
             'priority' => 'Priority',

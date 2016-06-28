@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
+use common\models\database\Gallery;
 
 /**
  * QuestionController implements the CRUD actions for Question model.
@@ -259,6 +260,12 @@ class QuestionController extends Controller
             case 'sympleImage':
                 return $this->renderingQuestionTypeCreate($model, '_sympleimage');
                 break;
+            case 'textImage':
+                return $this->renderingQuestionTypeCreate($model, '_textimage');
+                break;
+            case 'skinColor':
+                return $this->renderingQuestionTypeCreate($model, '_skincolor');
+                break;
             default:
                 $model->delete();
                 return $this->redirect(['index']);
@@ -292,6 +299,12 @@ class QuestionController extends Controller
             case 'sympleImage':
                 return $this->renderingQuestionTypeUpdate($model, '_sympleimage');
                 break;
+            case 'textImage':
+                return $this->renderingQuestionTypeUpdate($model, '_textimage');
+                break;
+            case 'skinColor':
+                return $this->renderingQuestionTypeCreate($model, '_skincolor');
+                break;
             default:
                 $model->delete();
                 return $this->redirect(['index']);
@@ -315,9 +328,9 @@ class QuestionController extends Controller
                 $validate_flag = $answerModel->validate() ? $validate_flag : false;
                 array_push($allAnswers,   $answerModel);
             }
-
             //save all models
             if($validate_flag){
+
                 foreach($allAnswers as $answer){
                     $answer->save();
                 }
@@ -325,8 +338,9 @@ class QuestionController extends Controller
             }
             return $this->render('updateanswers', [
                 'answers_models' => $allAnswers,
-                'id' => $model->getAttribite('test_id'),
-                'template' => $template
+                'id' => $model->getAttribite('id'),
+                'template' => $template,
+
             ]);
         }
         else{
@@ -336,8 +350,9 @@ class QuestionController extends Controller
 
             return $this->render('updateanswers', [
                 'answers_models' => $allAnswers,
-                'id' => $model->getAttribute('test_id'),
-                'template' => $template
+                'id' => $model->getAttribute('id'),
+                'template' => $template,
+               
             ]);
         }
     }
@@ -350,6 +365,9 @@ class QuestionController extends Controller
     protected function renderingQuestionTypeCreate($model, $template)
     {
         $answers_models=[];
+        if($template=='_skincolor'){
+            $model->answers_cnt +=2;
+        }
         for($i=$model->answers_cnt; $i>0; $i--){
             $answer = new Answer();
             $answer->setAttribute('question_id', $model->id);
@@ -358,7 +376,8 @@ class QuestionController extends Controller
         return $this->render('createanswers', [
             'answers_models' => $answers_models,
             'id' => $model->getAttribute('test_id'),
-            'template' => $template
+            'template' => $template,
+
         ]);
     }
 }

@@ -4,8 +4,8 @@
 
 ?>
 
-<button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#myModalGallery" data-backdrop="static">Выбрать картинку</button>
-<div id="myModalGallery" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#myModalGallery_<?= $idInput ?>" data-backdrop="static">Выбрать картинку</button>
+<div id="myModalGallery_<?= $idInput ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,7 +17,7 @@
                 <?php
                     foreach ($model as $item) {
                         echo '<li class="col-sm-4">';
-                        echo '<span data-id="'.$item->id.'" data-src="'.$item->src.'" class="thumbnail imgGallery">';
+                        echo '<span data-id="'.$item->id.'" data-src="'.$item->src.'" class="thumbnail imgGallery_'. $idInput .'">';
                         echo '<img src="'.$item->src.'" alt="">';
                         echo '</span>';
                         echo '</li>';
@@ -31,9 +31,9 @@
 
 <hr>
     <span class="thumbnail">
-        <img src="<?= $img; ?>" alt="" id="viewImg">
+        <img src="<?= $img; ?>" alt="" id="viewImg_<?= $idInput; ?>">
     </span>
 <hr>
 
 <?php
-$this->registerJs('$(".imgGallery").click(function(){$("#'.$idInput.'")[0].value = this.getAttribute("data-id");$("#viewImg")[0].src = this.getAttribute("data-src");$("#myModalGallery").modal("hide")});');
+$this->registerJs('$(".imgGallery_'.$idInput.'").click(function(){$("#'.$idInput.'")[0].value = this.getAttribute("data-id");$("#viewImg_'.$idInput.'")[0].src = this.getAttribute("data-src");$("#myModalGallery_'.$idInput.'").modal("hide")});');

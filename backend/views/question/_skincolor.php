@@ -17,22 +17,32 @@ use common\widgets\Gallery;
 
     <?php 
         $cnt = 1;
-        foreach($answers_models as $key => $value){
+    $countAnswer = count($answers_models);
+    foreach ($answers_models as $key => $value) {
+        if (($countAnswer - 2) >= $cnt) {
             echo "Вариант № " . $cnt++;
             //For id of current record in db. In this case we lose the need to pass this parameter in get request!!!
-            echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
-            
-            echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
-            
-            echo $form->field($value, '[' . $key . ']value')->textInput([ 'required' => 'required']);
+            echo (!$isNew) ? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false) : "";
 
-            $img = is_object($value->mainImage)?$value->mainImage->getAttribute('src'): null;
-            echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-'.$key.'-main_image_id', 'img' => $img]);
+            echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
+
+            echo $form->field($value, '[' . $key . ']value')->textInput(['required' => 'required']);
+
+            $img = is_object($value->mainImage) ? $value->mainImage->getAttribute('src') : null;
+            echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-' . $key . '-main_image_id', 'img' => $img]);
 
             echo $form->field($value, '[' . $key . ']main_image_id')->hiddenInput(['maxlength' => true])->label(false);
 
-            echo "<hr>";
+        }  else {
+            echo $form->field($value, '[' . $key . ']value')->textInput(['required' => 'required']);
+            echo $form->field($value, '[' . $key . ']description')->textInput();
+
         }
+
+        echo "<hr>";
+
+    }
+
     ?>
 
     <div class="form-group">

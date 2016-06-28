@@ -24,7 +24,9 @@ use common\widgets\Gallery;
             
             echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
             
-            echo $form->field($value, '[' . $key . ']value')->textInput([ 'required' => 'required']);
+            echo $form->field($value, '[' . $key . ']value')->textInput([ 'required' => 'required'])->label('Value(yes)');
+
+            echo $form->field($value, '[' . $key . ']description')->textarea(['rows'=>3, 'required' => 'required']);
 
             $img = is_object($value->mainImage)?$value->mainImage->getAttribute('src'): null;
             echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-'.$key.'-main_image_id', 'img' => $img]);
