@@ -59,10 +59,20 @@ $this->endBlock();
                     },
                 ],
 //                 'type',
+//                [
+//                    'attribute' => 'updated_at',
+//                    'format' => ['date', 'dd.MM.Y'],
+//                    'options' => ['width' => '200']
+//                ],
                 [
-                    'attribute' => 'updated_at',
-                    'format' =>  ['date', 'dd.MM.Y'],
-                    'options' => ['width' => '200']
+                    'header' => Yii::t('user', 'Все значения теста'),
+                    'value' => function ($model) {
+
+                            return Html::a(Yii::t('user', 'Все значения (' . count($model->testValues) . ')'), ['test-values/create', 'id' => $model->id], [
+                                'class' => 'btn btn-xs btn-success btn-block',
+                            ]);
+                    },
+                    'format' => 'raw',
                 ],
                 [
                     'header' => Yii::t('user', 'Количество вопросов'),
