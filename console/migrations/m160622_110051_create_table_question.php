@@ -26,7 +26,7 @@ class m160622_110051_create_table_question extends Migration
             'question_type_id' => $this->integer()->notNull(),
             'title' => $this->text()->notNull(),
             'subtitle' => $this->text()->defaultValue(NULL),
-            'priority' => $this->tinyint()->defaultValue(NULL),
+            'priority' => $this->integer()->defaultValue(NULL),
             'buttton_text' => $this->string(60)->defaultValue(NULL),
             'image_id' => $this->integer()->defaultValue(NULL),
             'description' => $this->text()->defaultValue(NULL),

@@ -30,7 +30,7 @@
                 if(($cntAnswers/4)>=($cnt))
                 {
                     echo "<div class='col-md-1'>";
-                    echo "Вариант # " . $cnt++; 
+                    echo "Вариант № " . $cnt++;
                     //For id of current record in db. In this case we lose the need to pass this parameter in get request!!!
                     echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
                     echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
@@ -63,7 +63,7 @@
                     if($cntThree<4){
                         $cntThree++;
                         echo "<div class='col-md-1'>";
-                        echo "Вариант # " . $cnt++; 
+                        echo "Вариант № " . $cnt++;
                         //For id of current record in db. In this case we lose the need to pass this parameter in get request!!!
                         echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
                         echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
@@ -94,3 +94,9 @@
     </div>
         <?php ActiveForm::end(); ?>
 </div>
+<style>
+    .btn-warning{
+        font-size: 11px;
+        padding-left: 6px;
+    }
+</style>

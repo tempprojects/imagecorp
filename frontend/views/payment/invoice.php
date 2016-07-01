@@ -40,7 +40,7 @@ $img = Gallery::findOne(['id' => $model->img]);
 
         <?php $form = ActiveForm::begin([
             'id' => 'registration-form',
-            'action' => '/user/registration/register',
+           'action' => '/user/registration/register',
             'options' => [
                 'class' => 'signup-form',
                 'data-pjax' => true,

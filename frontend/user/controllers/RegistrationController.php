@@ -44,8 +44,7 @@ class RegistrationController extends BaseController
 
         $this->performAjaxValidation($model);
 
-        if ($model->load(Yii::$app->request->post()) && $model->register()) {
-
+        if ($model->load(Yii::$app->request->post()) && $model->register() && $model->validate()) {
             $acc = Acc::findOne(['email' => $model->email]);
 
             $order = new DataOrder();
@@ -54,6 +53,8 @@ class RegistrationController extends BaseController
             }
             $this->trigger(self::EVENT_AFTER_REGISTER, $event);
             $this->redirect(['/payment/one-pay', 'test' => Yii::$app->request->post('test'), 'order' => $order->order_id]);
+        } else{
+            return  Yii::$app->request->referrer ? $this->redirect(Yii::$app->request->referrer) : $this->goHome();
         }
         if(!Yii::$app->request->isPost){
             return $this->renderAjax('register', [
