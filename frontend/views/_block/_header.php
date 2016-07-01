@@ -24,22 +24,24 @@ use yii\helpers\Url;
                     echo '<ul class="user-menu">';
                     echo '<li><a href="#">Профиль</a></li>';
                     echo '<li><a href="#">Мои тесты</a></li>';
-                    echo '<li><a href="#">Выйти</a></li>';
+                    echo '<li><a href="' .  Yii::$app->getUrlManager()->getBaseUrl() . 'user/security/logout ">Выйти</a></li>';
                     echo '</ul>';
                     echo '<div class="header-right header-menu m-hidden">';
                     echo '<div class="header-item">';
                     echo '<img src="/theme/img/photo.png" alt="">';
+
                     if(Yii::$app->controller->route == 'site/index'){
-                        echo '<p class="login-btn">Александра</p>';
+                        echo '<p class="login-btn">' . Yii::$app->user->identity->username . '</p>';
                     }
                     else{
                         echo '<p class="login-btn style-color">Александра</p>';
                     }
+                    
                     echo '</div>';
                 }
                 else{
                     echo '<ul class="user-menu">';
-                    echo '<li><a href="#">Войти</a></li>';
+                    echo '<li><a href="' .  Yii::$app->getUrlManager()->getBaseUrl() . 'user/security/login ">Войти</a></li>';
                     echo '<li><a href="#">Зарегистрироваться</a></li>';
                     echo '</ul>';
                     echo '<div class="header-right header-menu m-hidden">';

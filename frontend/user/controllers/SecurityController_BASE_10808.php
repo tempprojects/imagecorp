@@ -9,37 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace frontend\user\controllers;
+namespace backend\user\controllers;
 
 use Yii;
 use yii\web\Response;
 use dektrium\user\models\User;
 use dektrium\user\models\Account;
-use yii\filters\AccessControl;
 use dektrium\user\models\LoginForm;
 use dektrium\user\controllers\SecurityController as BaseController;
 
 class SecurityController extends BaseController
 {
-     /** @inheritdoc */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    ['allow' => true, 'actions' => ['login', 'auth', 'blocked'], 'roles' => ['?']],
-                    ['allow' => true, 'actions' => ['login', 'auth', 'logout'], 'roles' => ['@']],
-                ],
-            ],
-//            'verbs' => [
-//                'class' => VerbFilter::className(),
-//                'actions' => [
-//                    'logout' => ['post'],
-//                ],
-//            ],
-        ];
-    }
 
     /**
      * Displays the login page.
@@ -83,5 +63,5 @@ class SecurityController extends BaseController
 
         return $this->goHome();
     }
-    
+
 }

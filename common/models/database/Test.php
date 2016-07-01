@@ -4,6 +4,7 @@ namespace common\models\database;
 
 use Yii;
 use common\models\database\Question;
+use common\models\database\TestValues;
 
 /**
  * This is the model class for table "test".
@@ -67,5 +68,11 @@ class Test extends \yii\db\ActiveRecord
     public function getQuestion()
     {
         return $this->hasMany(Question::className(), ['test_id' => 'id']);
+    }
+    
+    //Rull connection to Question model(table)
+    public function getTestValues()
+    {
+        return $this->hasMany(TestValues::className(), ['test_id' => 'id']);
     }
 }

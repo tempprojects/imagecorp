@@ -360,6 +360,7 @@ class QuestionController extends Controller
                 $tempVar['Answer']=$answer;
                 $answerModel = $this->findModelAnswer($answer['id']);
                 $answerModel ->load($tempVar);
+                $validate_flag->save();
                 $validate_flag = $answerModel->validate() ? $validate_flag : false;
                 array_push($allAnswers,   $answerModel);
             }

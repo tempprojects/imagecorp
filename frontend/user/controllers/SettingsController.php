@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\user\controllers;
+namespace frontend\user\controllers;
 
 use dektrium\user\Finder;
 use dektrium\user\models\Profile;

@@ -34,7 +34,6 @@ class PaymentController extends \yii\web\Controller
             'model' => $model
         ]);
     }
-
     public function actionInvoice()
     {
         Yii::$app->view->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.16/css/bulma.min.css');
@@ -61,18 +60,14 @@ class PaymentController extends \yii\web\Controller
         else{
             return $this->redirect(['/site/index']);
         }
-        
 
         $order = Order::findOne(['order_id' => Yii::$app->request->get('order')]);
-
         $user = User::findOne(['id' => $order->id_user]);
 
         $configs = array();
         $configs['shopId'] 			= '117233';
         $configs['scId'] 			= '532316';
         $configs['ShopPassword'] 	= 'asD15famil8476aoN';
-
-
 
         return $this->render('one-pay',[
             'model'   => $model,

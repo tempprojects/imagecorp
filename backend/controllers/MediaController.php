@@ -47,6 +47,7 @@ class MediaController extends \yii\web\Controller
                 $image->imageFile = UploadedFile::getInstance($image, 'imageFile');
                 if($image->imageFile){
                     $data = $image->upload($model->type);
+
                     $model->name = $data['name'];
                     $model->extension = $data['extension'];
                     $model->src = $data['src'];
@@ -55,8 +56,16 @@ class MediaController extends \yii\web\Controller
                     $model->created_at = time();
                 }
                 $model->updated_at = time();
-                $model->save();
-                $this->redirect(['index']);
+               if($model->save()){
+                   $this->redirect(['index']);
+               }
+               else{
+                   $this->render('gallery-load',[
+                        'model' => $model,
+                        'image' => $image,
+                        'type'  => $this->type,
+                    ]);
+               }
             }
         }
         return $this->render('gallery-load',[
