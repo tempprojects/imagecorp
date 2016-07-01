@@ -1,11 +1,11 @@
 <?php
 return [
-    'site' => 'http://imagecorp.ru/',
-    'admin' => 'http://cp.imagecorp.ru',
+    'site' => 'http://frontend.imagecorp.localhost',
+    'admin' => 'http://backend.imagecorp.localhost',
     'typeImage' => [
         'config' => [
-            'url' => 'http://imagecorp.ru/uploads/',
-            'src' => '/home/i/imagec1s/imagecorp.ru/frontend/web/uploads/',
+            'url' => 'http://frontend.imagecorp.localhost/uploads/',
+            'src' => dirname(dirname(__DIR__)).'/frontend/web/uploads/',
             'prefixName' => 'image_',
         ],
         'name' => [
