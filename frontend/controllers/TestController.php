@@ -7,6 +7,7 @@ use common\models\database\Question;
 use Yii;
 use yii\web\Controller;
 use yii\web\Session;
+use yii\db\Query;
 
 /**
  * Site controller
@@ -99,7 +100,13 @@ class TestController extends Controller
 
         //if test has been passed
         if($number>$questionsQuantity){
-            return $this->redirect(['/payment/index', 'test' => $session->get('test_id')]);
+            $answewrs = $session->get('answewrs');
+            $result=0;
+            foreach($answewrs as $answer){
+                $result+=$answer;
+            }
+
+            return $this->redirect(['/test/result', 'test' => $session->get('test_id'), 'result'=>$result]);
         }
 
         $questionModel= Question::find()->where(['test_id'=> $session->get('test_id')])->orderBy('priority')->offset($number-1)->one();
@@ -203,4 +210,20 @@ class TestController extends Controller
         }
     }
 
+     /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionResult($test, $result)
+    { 
+        $query = new Query;
+        $query->select('answer, query_values')->from('test_values')->where(['and', "`from`<=$result", "`to`>=$result"])->andWhere(['test_id' => $test]);
+        $result = $query->one();
+
+        return $this->render('result', [ 
+                       'result' => $result,
+                ]);
+    }
 }
+
