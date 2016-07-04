@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use frontend\assets\SiteAsset;
 
 SiteAsset::register($this);
+$this->title = 'Корпорация Имиджа';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

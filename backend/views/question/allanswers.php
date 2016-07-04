@@ -18,7 +18,7 @@ use yii\grid\GridView;
     </div>
     <div class="col-sm-6">
         <?php 
-            echo ($local_answers_model->getModels()) ? Html::a('Редактировать ответи' . $id , ['question/updateanswers', 'id' => $id] , ['class' => 'btn btn-success']) : " ";
+            echo ($local_answers_model->getModels()) ? Html::a('Редактировать ответы ' . $id , ['question/updateanswers', 'id' => $id] , ['class' => 'btn btn-success']) : " ";
         ?>
     </div>
 </div>
