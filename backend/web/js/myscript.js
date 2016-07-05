@@ -15,6 +15,9 @@ $(document).ready(function () {
                 if ($(this).val() != 1) {
                     $(this).attr('disabled', 'disabled');
                 }
+                else{
+                    $(this).removeAttr('disabled', 'disabled');
+                }
             });
 
         } else if($('#question-question_type_id').val() == 5 || $('#question-question_type_id').val() == 8 || $('#question-question_type_id').val() == 9){
@@ -23,8 +26,10 @@ $(document).ready(function () {
                 if ($(this).val() != 2) {
                     $(this).attr('disabled', 'disabled');
                 }
+                else{
+                    $(this).removeAttr('disabled', 'disabled');
+                }
             });
-
         }
         else {
             $('#question-answers_cnt').val(2);
