@@ -18,15 +18,19 @@ use yii\grid\GridView;
         $question_type_id = count($local_answers_query)? $local_answers_query[0]->question->getAttribute('question_type_id'):0; 
         ?>
        
-        <?php 
+        <?php if($question_type_id != 12){
             if($question_type_id==5 || $question_type_id==8 || $question_type_id==9 || $question_type_id==3){
                 if(count($local_answers_query)<2 && ($question_type_id==5 || $question_type_id==8 || $question_type_id==9))
                 {
                       echo Html::a('Добавить ответ к вопросу №' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
                 }
             }
-            else{
-                echo Html::a('Добавить ответ к вопросу №' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
+
+            else {
+
+                echo Html::a('Добавить ответ к вопросу №' . $id, ['question/addanswer', 'id' => $id], ['class' => 'btn btn-success']);
+            }
+
             }
         ?>
     </div>
