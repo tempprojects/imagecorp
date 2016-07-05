@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
     /* @var $currentQuestion */
     /* $var $questionsQuantity */
 ?>
+<?= $this->render('/_block/_header_payment'); ?>
 <!-- Main Content -->
 	<div class="container">
 		<section class="hero">
@@ -31,10 +32,8 @@ use yii\widgets\ActiveForm;
                     ?>
 			<div class="columns">
                             <?php foreach ($model->answers as $key => $answer): 
-                                if(($key)%2 == 0):
                             ?>
-                            <?php endif; ?>
-                            <div class="column is-6 is-flex">
+                         <div class="column is-6 is-flex">
                                 <div class="box">
                                     <article class="media">
                                             <div class="media-content is-unselectable">
@@ -69,4 +68,3 @@ use yii\widgets\ActiveForm;
 		<div class="container"></div>
 	</footer>
 	<!-- /End -->
-
