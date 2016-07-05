@@ -143,16 +143,18 @@ class QuestionController extends Controller
     {
         $allAnswers=[];
         if(Yii::$app->request->post('Answer')){
+            $typeQuestion = Question::findOne(Yii::$app->request->post('Answer')[1]['question_id']);
             $validate_flag=true;
-            
-            foreach (Yii::$app->request->post('Answer') as $answer){
+           foreach (Yii::$app->request->post('Answer') as $answer){
                 $tempVar['Answer']=$answer;
+                if($typeQuestion->getAttribute('question_type_id')==5){
+                    $tempVar['Answer']['title'] = serialize($answer['title']);
+                }
                 $answerModel = new Answer();
                 $answerModel ->load($tempVar);
                 $validate_flag = $answerModel->validate() ? $validate_flag : false;
                 array_push($allAnswers,   $answerModel);
             }
-
             //save all models
             if($validate_flag){
                 foreach($allAnswers as $answer){
@@ -355,12 +357,16 @@ class QuestionController extends Controller
         $allAnswers=[];
         if(Yii::$app->request->post('Answer')){
             $validate_flag=true;
-            
+
             foreach (Yii::$app->request->post('Answer') as $answer){
                 $tempVar['Answer']=$answer;
+                if($template =='_aboutmecolour'){
+                    $tempVar['Answer']['title'] = serialize($answer['title']);
+                }
+//                print_r($tempVar);die()
                 $answerModel = $this->findModelAnswer($answer['id']);
                 $answerModel ->load($tempVar);
-                $validate_flag->save();
+//                $validate_flag->save();
                 $validate_flag = $answerModel->validate() ? $validate_flag : false;
                 array_push($allAnswers,   $answerModel);
             }

@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+
 ?>
 
 <?= $this->render('/_block/_header_payment'); ?>
@@ -40,14 +41,11 @@ use yii\widgets\ActiveForm;
                         </div>
                     </article>
                     <div class="columns is-mobile media-flex">
-
-                        <div class="column is-2 color1"></div>
-                        <div class="column is-2 color2"></div>
-                        <div class="column is-2 color3"></div>
-                        <div class="column is-2 color4"></div>
-                        <div class="column is-2 color5"></div>
-                        <div class="column is-2 color6"></div>
-
+                        <?php $colors = unserialize($answer->getAttribute('title'));
+                            foreach($colors as $color){
+                                echo '<div class="column is-2 color'.$color.'"></div>';
+                            }
+                        ?>
                     </div>
                     <div class="is-block">
                         <div class="uppercase is-text-centered text_0"><?=$answer ? $answer->getAttribute('buttton_text') : '' ?>
