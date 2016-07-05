@@ -284,6 +284,9 @@ class QuestionController extends Controller
             case 'eyes':
                 return $this->renderingQuestionTypeCreate($model, '_hair');
                 break;
+            case 'user_foto':
+                return $this->renderingQuestionTypeUpdate($model, '_user_foto');
+                break;
             default:
                 $model->delete();
                 return $this->redirect(['index']);
@@ -341,6 +344,9 @@ class QuestionController extends Controller
                 break;
             case 'eyes':
                 return $this->renderingQuestionTypeUpdate($model, '_hair');
+                break;
+            case 'user_foto':
+                return $this->renderingQuestionTypeUpdate($model, '_user_foto');
                 break;
             default:
                 $model->delete();

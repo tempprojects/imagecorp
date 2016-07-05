@@ -88,7 +88,7 @@ $this->title = 'My Yii Application';
                         else{
                             echo $item->price.'р</div>';
                         }
-                        echo '<a class="is-overlay hover-gray" href="'.Url::toRoute(['/payment/index', 'test' => $item->id]).'">ПРОЙТИ ТЕСТ</a>';
+                        echo '<a class="is-overlay hover-gray" href="'.Url::toRoute(['test/inittest', 'id' => $item->id]).'">ПРОЙТИ ТЕСТ</a>';
                         echo '</figure>';
                         echo '</div>';
                         echo '<div class="card-content">';
@@ -127,7 +127,7 @@ $this->title = 'My Yii Application';
                         else{
                             echo $item->price.'р</div>';
                         }
-                        echo '<a class="is-overlay hover-gray" href="'.Url::toRoute(['/payment/index', 'test' => $item->id]).'">ПРОЙТИ ТЕСТ</a>';
+                        echo '<a class="is-overlay hover-gray" href="'.Url::toRoute(['test/inittest', 'id' => $item->id]).'">ПРОЙТИ ТЕСТ</a>';
                         echo '</figure>';
                         echo '</div>';
                         echo '<div class="card-content">';
