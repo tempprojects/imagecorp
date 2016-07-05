@@ -8,21 +8,34 @@ use yii\grid\GridView;
 
 <?php 
     $local_answers_model = clone $answers_model;
+    $local_answers_query = $local_answers_model->getModels();
 ?>
 
 <div class = "row">
     <div class="col-sm-6">
+        
+        <?php
+        $question_type_id = count($local_answers_query)? $local_answers_query[0]->question->getAttribute('question_type_id'):0; 
+        ?>
+       
         <?php 
-            echo Html::a('Добавить ответ к вопросу №' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
+            if($question_type_id==5 || $question_type_id==8 || $question_type_id==9 || $question_type_id==3){
+                if(count($local_answers_query)<2 && ($question_type_id==5 || $question_type_id==8 || $question_type_id==9))
+                {
+                      echo Html::a('Добавить ответ к вопросу №' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
+                }
+            }
+            else{
+                echo Html::a('Добавить ответ к вопросу №' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
+            }
         ?>
     </div>
     <div class="col-sm-6">
         <?php 
-            echo ($local_answers_model->getModels()) ? Html::a('Редактировать ответы ' . $id , ['question/updateanswers', 'id' => $id] , ['class' => 'btn btn-success']) : " ";
+            echo ($local_answers_query) ? Html::a('Редактировать ответы ' . $id , ['question/updateanswers', 'id' => $id] , ['class' => 'btn btn-success']) : " ";
         ?>
     </div>
 </div>
-
 
 <?= 
     GridView::widget([

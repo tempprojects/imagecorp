@@ -60,6 +60,7 @@ SCRIPT;
             'name' => 'Answer['.$key.'][title]',
             'data' => $color,
             'value' => $data,
+            'maintainOrder' => true,
             'language' => 'ru',
             'options' => ['multiple' => true, 'placeholder' => 'Выберите цвета ...','id' => 'answer-' . $key . '-color_id'],
             'pluginOptions' => [
