@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
                             <input type="range" class="cropit-image-zoom-input">
                             <span class="plus"></span>
 
-                            <input type="file" name="file" id="file" class="cropit-image-input">
+                            <input type="file" name="file" class="cropit-image-input">
 
                             <label for="file" class="cam is-pulled-right">
                                 <img src="<?= (Yii::$app->controller->route == 'site/index')?>/theme/img/ic/camera.png" alt="">
