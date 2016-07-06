@@ -23,6 +23,7 @@ use common\models\database\TestValues;
  */
 class Test extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * @inheritdoc
      */

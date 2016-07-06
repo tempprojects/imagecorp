@@ -46,13 +46,16 @@ class TestController extends Controller
                 return $this->redirect(['test', 'number' => $session->get('passed_questions', 0)]);
             }
             else{
+                if ($session->get('user_photo') != "") {
+                    $delphoto = Yii::getAlias('@frontend') . '/web' . $session->get('user_photo');
+                    unlink($delphoto);
+                }
                 $session->destroy();
                 $session->open();
             }
         }
         
         $answers=[];
-
         $session->set('test_id', $id);
         $session->set('passed_questions', 0);
         $session->set('answewrs', $answers);
@@ -67,7 +70,7 @@ class TestController extends Controller
     * @return mixed
     */
     public function actionTest($number)
-    {  
+    {
         $session = Yii::$app->session;
         if (!$session->isActive){
             $session->open();
@@ -92,11 +95,33 @@ class TestController extends Controller
         //if isset post
         if(Yii::$app->request->post())
         {
+
             $answewrs = $session->get('answewrs');
             $answewrs[$number-1] = Yii::$app->request->post('answer');
             $answewrs = $session->set('answewrs', $answewrs);
             $session->set('passed_questions', $number-1);
         }
+        $photoPath = Yii::getAlias('@frontend').'/web/uploads/answer/';
+        $photo = '';
+        if (!empty($_FILES)) {
+            $uploadfile = $photoPath . basename($_FILES['file']['name']);
+            $getpath = '/uploads/answer/' . basename($_FILES['file']['name']);
+            $type = $_FILES['file']['type'];
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+                $image = $uploadfile;
+// Read image path, convert to base64 encoding
+                $imageData = base64_encode(file_get_contents($image));
+
+// Format the image SRC:  data:{mime};base64,{data};
+                $src = 'data: ' . $type . ';base64,' . $imageData;
+                if($session->get('user_photo')!=''){
+                    unset($session['user_photo']);
+                }
+                $session->set('user_photo', $src);
+            }
+        }
+
+        $photo = $session->get('user_photo');
 
         //if test has been passed
         if($number>$questionsQuantity){
@@ -110,14 +135,14 @@ class TestController extends Controller
         }
 
         $questionModel= Question::find()->where(['test_id'=> $session->get('test_id')])->orderBy('priority')->offset($number-1)->one();
-        return $this->getQuestionSwith($questionModel, $number, $questionsQuantity);
+        return $this->getQuestionSwith($questionModel, $number, $questionsQuantity, $photo);
     }
         /**
      * Switch form tampale when create new answers
      * @param object $model (model of Answer record)
      * @return mixed
      */
-    protected function getQuestionSwith($model, $questionNumber, $questionsQuantity){
+    protected function getQuestionSwith($model, $questionNumber, $questionsQuantity,$photo){
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/flexie/1.0.3/flexie.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerJsFile('js/jquery.cropit.js', ['depends' => 'frontend\assets\AppAsset']);
@@ -207,7 +232,8 @@ class TestController extends Controller
                 return $this->render('_user_foto', [
                     'model' => $model,
                     'currentQuestion' => $questionNumber,
-                    'questionsQuantity'=>$questionsQuantity
+                    'questionsQuantity'=>$questionsQuantity,
+                    'photo'=>$photo
                 ]);
                 break;
             default:
