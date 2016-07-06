@@ -50,14 +50,14 @@ class TestController extends Controller
                 $session->open();
             }
         }
-        
+
         $answers=[];
 
         $session->set('test_id', $id);
         $session->set('passed_questions', 0);
         $session->set('answewrs', $answers);
         $session->close();
-        
+
         return $this->redirect(['test', 'number' => 1]);
     }
 

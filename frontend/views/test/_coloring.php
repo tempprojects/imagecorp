@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
     /* @var $currentQuestion */
     /* $var $questionsQuantity */
 ?>
-
+<?= $this->render('/_block/_header_payment'); ?>
 <!-- Main Content -->
 	<div class="container">
 		<section class="hero">

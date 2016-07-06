@@ -3,13 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/server/htdocs/imagecorp/frontend/user/views/security/login.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/frontend/controllers/PaymentController.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/frontend/views/layouts/blog.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/frontend/user/controllers/SecurityController.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/vendor/dektrium/yii2-user/controllers/SecurityController.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/frontend/controllers/TestController.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/frontend/views/test/_textimage.php</file>
+            <file>file:/D:/server/htdocs/imagecorp/frontend/views/test/_face.php</file>
         </group>
     </open-files>
 </project-private>

@@ -36,18 +36,36 @@ $formCnt = 0;
             <div class="col-md-3 col-lg-5">
                 <?= $form->field($mod, '[' . $key . ']query_values')->textarea(['rows' => 1, 'required' => 'required']) ?>
             </div>
-            
             <div class="col-md-2 col-lg-1">
                 <br>
-                <?=
+                 <?=
                     Html::a(Yii::t('user', 'Delete'), ['test-values/delete', 'id' => $mod->id], [
                          'class' => 'btn btn-xs btn-danger btn-block delete_button'
                    ]);
                 ?>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-md-offset-5 col-lg-offset-5">
+                <a data-toggle="collapse" class="btn btn-xs btn-success btn-block" data-target="#collapse<?=$key?>">Page</a>
+           </div>
+        </div>
+         <div id="collapse<?=$key?>" class="collapse">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                   <?= $form->field($mod, '[' . $key . ']page_title')->textInput() ?>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-12 col-lg-12">
+                   <?= $form->field($mod, '[' . $key . ']page_description')->textarea(['rows' => 3, 'required' => 'required']) ?>
+                </div>
+             </div>
+        </div>
     </div>
     <?php endforeach; ?>
+    
+    <br>
     <div class="row" id="new_section">
          <div class="col-md-2 col-md-offset-5">
             <a id="add_new" class="btn btn-xs btn-success btn-block">Add new Test result</a>
