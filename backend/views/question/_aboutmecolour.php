@@ -55,13 +55,14 @@ SCRIPT;
         echo $form->field($value, '[' . $key . ']main_image_id')->hiddenInput(['maxlength' => true])->label("Photo");
         echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-' . $key . '-main_image_id', 'img' => $img]);
 
-        $color = array('1' => '#efefef', '2' =>'#747474', '3' => '#945858', '4' => '#282828', '5' => '#642554', '6' => '#59945c','7' => '#efefef','8' => '#04e2e5','9' => '#ebdf19','10' => '#ff05c7','11' => '#01ecb4', '12' => '#282828');
+        $color = array('1' => '#efefef', '2' =>'#747474', '3' => '#945858', '4' => '#282828', '5' => '#642554', '6' => '#59945c','7' => '#efefef','8' => '#04e2e5','9' => '#ebdf19','10' => '#ff05c7','11' => '#00610D', '12' => '#282828');
         echo Select2::widget([
             'name' => 'Answer['.$key.'][title]',
             'data' => $color,
             'value' => $data,
             'maintainOrder' => true,
             'language' => 'ru',
+            'maintainOrder' => true,
             'options' => ['multiple' => true, 'placeholder' => 'Выберите цвета ...','id' => 'answer-' . $key . '-color_id'],
             'pluginOptions' => [
                 'maximumSelectionLength' => 6,

@@ -203,6 +203,13 @@ class TestController extends Controller
                         'questionsQuantity'=>$questionsQuantity
                     ]);
                 break;
+            case 'user_foto':
+                return $this->render('_user_foto', [
+                    'model' => $model,
+                    'currentQuestion' => $questionNumber,
+                    'questionsQuantity'=>$questionsQuantity
+                ]);
+                break;
             default:
                 $model->delete();
                 return $this->redirect(['index']);
