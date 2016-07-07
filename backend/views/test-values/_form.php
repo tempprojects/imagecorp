@@ -88,10 +88,11 @@ $result_type = Test::findOne($_GET['id'])->getAttribute('result_type_id');
     </div>
 
     <?php ActiveForm::end(); ?>
-    <?php if($result_type==2):?>
-        <div class="form-group"><br>
-            <?= Html::submitButton('Save' , ['class' => 'btn btn-success']) ?>
-        </div>
+    <?php if($result_type==2): ?>
+        <?php $form = ActiveForm::begin(); ?>
+
+
+        <?php ActiveForm::end(); ?>
     <?php endif; ?>
 
 </div>

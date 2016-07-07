@@ -8,6 +8,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\Session;
 use yii\db\Query;
+use yii\filters\VerbFilter;
 
 /**
  * Site controller
@@ -20,7 +21,7 @@ class TestController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {  
+    {
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/flexie/1.0.3/flexie.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.16/css/bulma.min.css');
@@ -101,23 +102,18 @@ class TestController extends Controller
             $answewrs = $session->set('answewrs', $answewrs);
             $session->set('passed_questions', $number-1);
         }
+        $img = !empty($_POST['image'])?$_POST['image']:'';
+        print_r($_POST);
         $photoPath = Yii::getAlias('@frontend').'/web/uploads/answer/';
         $photo = '';
         if (!empty($_FILES)) {
             $uploadfile = $photoPath . basename($_FILES['file']['name']);
             $getpath = '/uploads/answer/' . basename($_FILES['file']['name']);
-            $type = $_FILES['file']['type'];
             if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-                $image = $uploadfile;
-// Read image path, convert to base64 encoding
-                $imageData = base64_encode(file_get_contents($image));
-
-// Format the image SRC:  data:{mime};base64,{data};
-                $src = 'data: ' . $type . ';base64,' . $imageData;
                 if($session->get('user_photo')!=''){
                     unset($session['user_photo']);
                 }
-                $session->set('user_photo', $src);
+                $session->set('user_photo', $getpath);
             }
         }
 
@@ -146,6 +142,7 @@ class TestController extends Controller
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/flexie/1.0.3/flexie.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerJsFile('js/jquery.cropit.js', ['depends' => 'frontend\assets\AppAsset']);
+        Yii::$app->view->registerJsFile('js/custom.js', ['depends' => 'frontend\assets\AppAsset']);
         Yii::$app->view->registerJsFile('js/main.js', ['depends' => 'frontend\assets\AppAsset']);
         Yii::$app->view->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.16/css/bulma.min.css');
         Yii::$app->view->registerCssFile('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
