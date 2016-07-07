@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\widgets\Gallery;
+use common\models\database\ResultType;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\database\Test */
@@ -44,6 +46,8 @@ $item = [
     <?= $form->field($model, 'description')->textarea(['rows' => 6]); ?>
 
     <?= $form->field($model, 'img')->hiddenInput(['maxlength' => true])->label(false); ?>
+
+    <?= $form->field($model, 'result_type_id')->dropDownList(ArrayHelper::map(ResultType::find()->all(),'id','title'), ['prompt' => 'Выберите тип результата...']); ?>
 
     <div class="row">
         <?php

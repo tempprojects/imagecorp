@@ -38,9 +38,9 @@ class Test extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'alias', 'img', 'updated_at', 'created_at'], 'required'],
+            [['title', 'alias', 'img', 'updated_at', 'created_at','result_type_id'], 'required'],
             [['description'], 'string'],
-            [['like', 'sort', 'type', 'price'], 'integer'],
+            [['like', 'sort', 'type', 'price', 'result_type_id'], 'integer'],
             [['title', 'alias', 'img'], 'string', 'max' => 500],
         ];
     }
@@ -62,6 +62,7 @@ class Test extends \yii\db\ActiveRecord
             'price' => 'Price',
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
+            'result_type_id' => 'Result',
         ];
     }
     

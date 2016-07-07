@@ -29,13 +29,14 @@
 
                 if(($cntAnswers/4)>=($cnt))
                 {
+                    $childcnt = 1;
+                    $parentcnt = 1;
                     echo "<div class='col-md-1'>";
                     echo "Вариант № " . $cnt++;
                     //For id of current record in db. In this case we lose the need to pass this parameter in get request!!!
                     echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
                     echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
-
-                    echo $form->field($value, '[' . $key . ']value')->textInput([ 'required' => 'required']);
+                    echo $form->field($value, '[' . $key . ']value')->hiddenInput([ 'value'=>$cnt-1])->label(false);
 
                     $img = is_object($value->mainImage)?$value->mainImage->getAttribute('src'): null;
                     echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-'.$key.'-main_image_id', 'img' => $img]);
@@ -56,20 +57,20 @@
                              $offsetDownCorection= $offsetDown;
                         }
                         for($i=$offsetDownCorection; $i>1; $i--){
+
                             echo "<div class='col-md-1'></div>";
-                        } 
+                        }
                     }
 
                     if($cntThree<4){
+
                         $cntThree++;
                         echo "<div class='col-md-1'>";
-                        echo "Вариант № " . $cnt++;
+                        echo "Вариант № ".$parentcnt.'.' . $childcnt++;
                         //For id of current record in db. In this case we lose the need to pass this parameter in get request!!!
                         echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
                         echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
-
-                        echo $form->field($value, '[' . $key . ']value')->textInput([ 'required' => 'required']);
-
+                        echo $form->field($value, '[' . $key . ']value')->hiddenInput([ 'value'=> $parentcnt.'.' . ($childcnt-1)])->label(false);
 
                         $img = is_object($value->mainImage)?$value->mainImage->getAttribute('src'): null;
                         echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-'.$key.'-main_image_id', 'img' => $img]);
@@ -79,6 +80,8 @@
                     }
 
                     if($cntThree>3){
+                        $parentcnt++;
+                        $childcnt = 1;
                         $switchTree=true;
                         $offsetDown++;
                         $cntThree=1;
