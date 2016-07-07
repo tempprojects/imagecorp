@@ -1,7 +1,8 @@
 <?php
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\Html;
+echo Html::csrfMetaTags();
     /* @var $this yii\web\View */
     /* @var $model */
     /* @var $currentQuestion */

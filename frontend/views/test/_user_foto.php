@@ -3,11 +3,7 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\web\Session;
 use yii\helpers\Html;
-//$session = Yii::$app->session;
-//if (!$session->isActive){
-//    $session->open();
-//}
-echo Html::csrfMetaTags()
+echo Html::csrfMetaTags();
 ?>
 <?= $this->render('/_block/_header_payment'); ?>
 <!-- Main Content -->
@@ -61,21 +57,3 @@ echo Html::csrfMetaTags()
 <footer>
     <div class="container"></div>
 </footer>
-<?php
-
-$this->registerJs("
-//var csrfToken = $('meta[name=\"csrf-token\"]').attr(\"content\");
-//$('#foto_test').submit(function(e) {
-//    e.preventDefault();
-//    var imageData = $('#image-cropper').cropit('export');
-//    //console.log(imageData);
-//    $.ajax({
-//        data : {_csrf : csrfToken, image: imageData},
-//        url: '/test/test/*?number=1',
-//        type: 'post',
-//    }).done(function() {
-//    $(this).submit();
-//    });
-//});");
-
-?>
