@@ -32,10 +32,11 @@ class TestValues extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['test_id', 'from', 'to', 'answer', 'query_values'], 'required'],
+            [['test_id', 'answer', 'query_values', 'page_title', 'page_description'], 'required'],
             [['test_id'], 'integer'],
             [['from', 'to'], 'number'],
-            [['answer', 'query_values'], 'string'],
+            [['query_values'], 'string'],
+            [['answer', 'page_title', 'page_description'], 'string', 'max' => 255],
             [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Test::className(), 'targetAttribute' => ['test_id' => 'id']],
         ];
     }
@@ -52,6 +53,8 @@ class TestValues extends \yii\db\ActiveRecord
             'to' => 'To',
             'answer' => 'Answer',
             'query_values' => 'Query Values',
+            'page_title' => 'Page Title',
+            'page_description' => 'Page Description',
         ];
     }
 
@@ -61,5 +64,10 @@ class TestValues extends \yii\db\ActiveRecord
     public function getTest()
     {
         return $this->hasOne(Test::className(), ['id' => 'test_id']);
+    }
+
+    public function getUserTests()
+    {
+        return $this->hasMany(UserTest::className(), ['test_value_id' => 'id']);
     }
 }

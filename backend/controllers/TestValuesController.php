@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\database\Test;
 use Yii;
 use common\models\database\TestValues;
 use common\models\search\TestValuesSearch;
@@ -94,12 +95,13 @@ class TestValuesController extends Controller
             return $this->render('create', [
                    'model' => $allTempModels,
                ]);
-        }
-        else{
-            $model= $model?$model : array($newModel);
+        } else {
+            $model = $model ? $model : array($newModel);
+
             return $this->render('create', [
-                    'model' => $model,
-                ]);
+                'model' => $model,
+
+            ]);
         }
     }
 
