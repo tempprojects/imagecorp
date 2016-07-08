@@ -1,14 +1,13 @@
 <?php
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use yii\web\Session;
 use yii\helpers\Html;
 echo Html::csrfMetaTags();
 ?>
 <?= $this->render('/_block/_header_payment'); ?>
 <!-- Main Content -->
 <div class="container">
-    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post', 'enctype' => 'multipart/form-data','id'=>'foto_test']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post','id'=>'foto_test']]); ?>
     <section class="hero">
         <div class="hero-content">
             <h1 class="title"><?= $model->getAttribute('title')?></h1>
@@ -48,8 +47,7 @@ echo Html::csrfMetaTags();
         </div>
     </section>
     <section class="section is-text-centered">
-        <a  class="subm" href="#">Далее</a>
-        <button type="submit" class="button primary submit_image">Далее</button>
+       <button type="submit" class="button primary">Далее</button>
     </section>
     <?php ActiveForm::end(); ?>
 </div>

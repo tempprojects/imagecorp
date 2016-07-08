@@ -24,7 +24,7 @@ echo Html::csrfMetaTags();
                              </div>
 			</div>
 		</section>
-            <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post']]); ?>
+            <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post','id'=>'foto_test']]); ?>
 
 		<section class="section coloring colr-4">
                     <?php
@@ -36,7 +36,7 @@ echo Html::csrfMetaTags();
 				<div class="column is-half">
 					<div class="cropper is-pulled-right">
 						<div class="image-editor">
-							<div class="cropit-preview"></div>
+							<div class="cropit-preview"><?php  echo '<img class="cropit-preview-image" alt="" src="'.$photo.'" style="">'; ?></div>
 							<div class="tools-box">
 								<span class="minus"></span>
 								<input type="range" class="cropit-image-zoom-input">

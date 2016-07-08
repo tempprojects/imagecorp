@@ -194,7 +194,8 @@ class TestController extends Controller
                 return $this->render('_coloring', [ 
                         'model' => $model,
                         'currentQuestion' => $questionNumber,
-                        'questionsQuantity'=>$questionsQuantity
+                        'questionsQuantity'=>$questionsQuantity,
+                        'photo'=>$photo
                     ]);
                 break;
             case 'face':
