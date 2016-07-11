@@ -31,6 +31,11 @@ class BlogController extends \yii\web\Controller
         if(Yii::$app->request->get('element') && Blog::findOne(['alias' => Yii::$app->request->get('element')])){
             $model = Blog::findOne(['alias' => Yii::$app->request->get('element')]);
             $also = Blog::find()->where(['category' => $model->category])->limit(3)->all();
+
+            //meta
+            Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->getAttribute('meta_description')]);
+            Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $model->getAttribute('meta_title')]);
+            Yii::$app->view->registerMetaTag(['name' => 'keys', 'content' => $model->getAttribute('meta_keys')]);
         }
 
         return $this->render('view',[

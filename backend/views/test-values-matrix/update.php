@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\database\TestValues */
+/* @var $model common\models\database\TestValuesMatrix */
 
-$this->title = 'Update Test Values: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Test Values', 'url' => ['index']];
+$this->title = 'Update Test Values Matrix: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Test Values Matrices', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="test-values-update">
+<div class="test-values-matrix-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

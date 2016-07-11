@@ -50,7 +50,6 @@ use yii\widgets\ActiveForm;
                                     echo '</div> <div class="column">';
                                 }
                               ?>
-
                             <div class="box is-block face_box">
                                 <div class="is-block is-text-centered"><?=  $answer->mainImage ?  '<img src="' . $answer->mainImage->getAttribute('src') . '" >':"" ?> 
                                 </div>

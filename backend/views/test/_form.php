@@ -67,6 +67,23 @@ $item = [
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-2 col-lg-offset-5">
+            <h2>SEO</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+             <?= $form->field($model, 'meta_description')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+             <?= $form->field($model, 'meta_title')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+             <?= $form->field($model, 'meta_keys')->textInput(); ?>
+        </div>
+    </div>
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

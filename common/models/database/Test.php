@@ -39,7 +39,10 @@ class Test extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'alias', 'img', 'updated_at', 'created_at','result_type_id'], 'required'],
-            [['description'], 'string'],
+            [['description', ], 'string'],
+            [['meta_description'], 'string', 'max' => 170],
+            [['meta_title'], 'string', 'max' => 120],
+            [['meta_keys'], 'string', 'max' => 160],
             [['like', 'sort', 'type', 'price', 'result_type_id'], 'integer'],
             [['title', 'alias', 'img'], 'string', 'max' => 500],
         ];
@@ -63,6 +66,9 @@ class Test extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
             'result_type_id' => 'Result',
+            'meta_description' => 'Meta description',
+            'meta_title' => 'Meta title',
+            'meta_keys' => 'Meta keys',
         ];
     }
     
@@ -71,9 +77,15 @@ class Test extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Question::className(), ['test_id' => 'id']);
     }
-    
+
     //Rull connection to Question model(table)
     public function getTestValues()
+    {
+        return $this->hasMany(TestValues::className(), ['test_id' => 'id']);
+    }
+
+    //Rull connection to Question model(table)
+    public function getAllTestvalue()
     {
         return $this->hasMany(TestValues::className(), ['test_id' => 'id']);
     }
