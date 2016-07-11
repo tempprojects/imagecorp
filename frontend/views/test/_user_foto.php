@@ -1,16 +1,13 @@
 <?php
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use yii\web\Session;
-//$session = Yii::$app->session;
-//if (!$session->isActive){
-//    $session->open();
-//}
+use yii\helpers\Html;
+echo Html::csrfMetaTags();
 ?>
 <?= $this->render('/_block/_header_payment'); ?>
 <!-- Main Content -->
 <div class="container">
-    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post', 'enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post','id'=>'foto_test']]); ?>
     <section class="hero">
         <div class="hero-content">
             <h1 class="title"><?= $model->getAttribute('title')?></h1>
@@ -28,7 +25,7 @@ use yii\web\Session;
         <div class="columns">
             <div class="column is-half is-offset-quarter">
                 <div class="cropper">
-                    <div class="image-editor abc123123">
+                    <div id='image-cropper' class="image-editor abc123123">
                         <div class="cropit-preview"><?php  echo '<img class="cropit-preview-image" alt="" src="'.$photo.'" style="">'; ?></div>
                         <!-- <div class="image-size-label">
                         </div> -->
@@ -37,7 +34,8 @@ use yii\web\Session;
                             <input type="range" class="cropit-image-zoom-input">
                             <span class="plus"></span>
 
-                            <input type="file" name="file" class="cropit-image-input">
+                            <input type="file" name="file" class="cropit-image-input" value="">
+                            <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 
                             <label for="file" class="cam is-pulled-right">
                                 <img src="<?= (Yii::$app->controller->route == 'site/index')?>/theme/img/ic/camera.png" alt="">
@@ -49,8 +47,7 @@ use yii\web\Session;
         </div>
     </section>
     <section class="section is-text-centered">
-
-        <button type="submit" class="button primary submit_image">Далее</button>
+       <button type="submit" class="button primary">Далее</button>
     </section>
     <?php ActiveForm::end(); ?>
 </div>

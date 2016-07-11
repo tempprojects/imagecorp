@@ -71,7 +71,7 @@ class TestValuesController extends Controller
     */
     public function actionCreate($id)
     {
-        $newModel = new TestValuesMatrix();
+        $newModel = new TestValues();
         $newModel->setAttribute('test_id', $id);
         $model = TestValues::find()->where(['=', "test_id", $id])->all();
 
@@ -98,6 +98,7 @@ class TestValuesController extends Controller
                 if($testValues['id']){
                     $modelTestValues =  $this->findModel($testValues['id']);
                     $modelTestValues->load($tempVar);
+
                 }
                 else{
                      $modelTestValues =  clone $newModel;
@@ -107,7 +108,7 @@ class TestValuesController extends Controller
                 $validate_flag = $modelTestValues->validate() ? $validate_flag : false;
                 array_push($allTempModels,   $modelTestValues);
             }
-
+            
            if($validate_flag){
                 foreach($allTempModels as $tempModel){
                     $tempModel->save();

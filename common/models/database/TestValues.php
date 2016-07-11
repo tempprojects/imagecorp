@@ -33,7 +33,7 @@ class TestValues extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['test_id', 'answer', 'query_values', 'page_title', 'page_description'], 'required'],
+            [['test_id', 'answer', 'query_values'], 'required'],
             [['test_id'], 'integer'],
             [['from', 'to'], 'number'],
             [['query_values'], 'string'],

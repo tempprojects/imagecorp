@@ -89,6 +89,7 @@ $result_type = Test::findOne($_GET['id'])->getAttribute('result_type_id');
         <?= Html::submitButton('Save' , ['class' => 'btn btn-success']) ?>
     </div>
     <?php ActiveForm::end(); ?>
+
     <br>
     <br>
 </div>
@@ -102,7 +103,7 @@ $result_type = Test::findOne($_GET['id'])->getAttribute('result_type_id');
             // if questions quantity more than 2
             if(count($model[0]->test->question)>1):
                 Pjax::begin();
-            
+
                 echo  GridView::widget([
                     'dataProvider' => $dataProviderMatrix,
                     'filterModel' => $searchModelMatrix,

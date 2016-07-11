@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
         <th style="text-align: center;" colspan="<?= count($ownModel["1.1"]) ?>" ><?= $questionH->getAttribute('subtitle')?></th>
     </tr>
     <tr>
-        <th></th>
+       <th></th>
        <th></th>
         <?php
             foreach ($ownModel["1.1"] as $key => $value) {
