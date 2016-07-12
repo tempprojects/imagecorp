@@ -46,6 +46,7 @@ echo Html::csrfMetaTags();
             </div>
         </div>
     </section>
+    <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id')?>">
     <section class="section is-text-centered">
        <button type="submit" class="button primary">Далее</button>
     </section>

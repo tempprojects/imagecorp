@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\models\database\TestValues;
 use common\models\database\Test;
 use common\models\database\Question;
+use common\models\database\TestValuesMatrix;
 use Yii;
 use yii\web\Controller;
 use yii\web\Session;
@@ -60,6 +61,7 @@ class TestController extends Controller
         $session->set('test_id', $id);
         $session->set('passed_questions', 0);
         $session->set('answewrs', $answers);
+        $session->set('answewrsid', $answers);
         $session->close();
 
         return $this->redirect(['test', 'number' => 1]);
@@ -95,10 +97,12 @@ class TestController extends Controller
 
         //if isset post
         if (Yii::$app->request->post()) {
-
             $answewrs = $session->get('answewrs');
+            $answewrsid=$session->get('answewrsid');
             $answewrs[$number - 1] = Yii::$app->request->post('answer');
+            $answewrsid[Yii::$app->request->post('answewrid')] = $number - 1;
             $answewrs = $session->set('answewrs', $answewrs);
+            $answewrs = $session->set('answewrsid', $answewrsid);
             $session->set('passed_questions', $number - 1);
         }
         $img = !empty($_POST['image']) ? $_POST['image'] : '';
@@ -114,19 +118,14 @@ class TestController extends Controller
 
         //if test has been passed
         if ($number > $questionsQuantity) {
-            $answewrs = $session->get('answewrs');
-            $result = 0;
-            foreach ($answewrs as $answer) {
-                $result += $answer;
-            }
-
-            return $this->redirect(['/test/result', 'test' => $session->get('test_id'), 'result' => $result]);
+            return $this->redirect(['/test/result', 'test' => $session->get('test_id')]);
         }
 
         $questionModel = Question::find()->where(['test_id' => $session->get('test_id')])->orderBy('priority')->offset($number - 1)->one();
         return $this->getQuestionSwith($questionModel, $number, $questionsQuantity, $photo);
     }
-        /**
+
+    /**
      * Switch form tampale when create new answers
      * @param object $model (model of Answer record)
      * @return mixed
@@ -218,7 +217,7 @@ class TestController extends Controller
                     ]);
                 break;
             case 'eyes':
-                return $this->render('_hair', [ 
+                return $this->render('_eyes', [ 
                         'model' => $model,
                         'currentQuestion' => $questionNumber,
                         'questionsQuantity'=>$questionsQuantity
@@ -244,15 +243,77 @@ class TestController extends Controller
      *
      * @return mixed
      */
-    public function actionResult($test, $result)
-    { 
-        $query = new Query;
-        $query->select('answer, query_values')->from('test_values')->where(['and', "`from`<=$result", "`to`>=$result"])->andWhere(['test_id' => $test]);
-        $result = $query->one();
+    public function actionResult($test)
+    {        
+        $session = Yii::$app->session;
+        
+        if($session->get('test_id')!=$test)
+        {
+            return $this->redirect(['test', 'number' => $session->get('passed_questions', 0)]);
+        }
+        
+        $testModel=$this->findModel($test);
+        
+        if($testModel->getAttribute('result_type_id')==1){
+            $answewrs = $session->get('answewrs');
+            $result = 0;
+            foreach ($answewrs as $answer) {
+                $result += $answer;
+            }
+            
+            $query = new Query;
+            $query->select('answer, query_values')->from('test_values')->where(['and', "`from`<=$result", "`to`>=$result"])->andWhere(['test_id' => $test]);
+            $result = $query->one();
 
-        return $this->render('result', [ 
-                       'result' => $result,
-                ]);
+            return $this->render('result', [ 
+                           'result' => $result,
+                    ]);
+        }
+        else{
+            $answewrs = $session->get('answewrs');
+            $answewrsNumbersByid=$session->get('answewrsid');
+            
+            $query = new Query;
+            $query->select(' * ')->from('test_values_matrix')->where(['test_id' => $test])->andWhere(['active_flag' => 1]);
+            $result = $query->one();
+            
+            if(!$result){
+                return $this->redirect(['list-test']);
+            }
+
+            //get matrix
+            $matrix = unserialize($result['serialize']);
+            $testValueId=$matrix[$answewrs[$answewrsNumbersByid[$result['question_vertical_id']]]][$answewrs[$answewrsNumbersByid[$result['question_horizontal_id']]]];
+
+            if(!$testValueId){
+                return $this->redirect(['list-test']);
+            }
+            
+            $query = new Query;
+            $query->select('answer, query_values')->from('test_values')->where(['id' => $testValueId]);
+            $result = $query->one();
+
+            
+            return $this->render('result', [ 
+                           'result' => $result,
+                    ]);
+        }
+    }
+
+     /**
+     * Finds the Test model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Test the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Test::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }
 

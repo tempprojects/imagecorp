@@ -34,7 +34,7 @@ echo Html::csrfMetaTags();
                     ?>
 			<div class="columns is-mobile is-multiline">
                             <?php for($i=0; $i<$firstSectionCnt; $i++):?>
-				<div class="column is-flex hair" id="h<?= ($i+1) ?>">
+				<div class="column is-flex eye" id="h<?= ($i+1) ?>">
                                     <div class="box">
                                         <div class="is-block"><img src="<?= isset($answers[$i]) ? ($answers[$i]->mainImage ? $answers[$i]->mainImage->getAttribute("src") : "") : "" ?>" alt="">
                                         </div>
@@ -49,7 +49,7 @@ echo Html::csrfMetaTags();
                             <?php endfor; ?>
 			</div>
                         <?php for($i=1; $i<=$firstSectionCnt; $i++):?>
-                            <div class="columns hair hair<?=$i ?>-1 is-mobile" id="hair<?= $i ?>-1">
+                            <div class="columns eye eye<?=$i ?>-1 is-mobile" id="eye<?= $i ?>-1">
                                 <?php $secondForCnt = 1; 
                                       $outputSectionsCnt = 0; ?>
                                 <?php for($j=($i-1)*2 + $firstSectionCnt; $j<(($i-1)*2 + 2*$firstSectionCnt); $j++): ?>

@@ -46,10 +46,12 @@ echo Html::csrfMetaTags();
             <section class="section is-text-centered">
                 <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post', 'style'=>'display: inline-block']]); ?>
                 <input type="hidden" name="answer" value="<?= $model->answers? $model->answers[0]->getAttribute('value'):"" ?>">
+                <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id')?>">
                 <button type="submit" class="button primary1">Да</button>
                 <?php ActiveForm::end(); ?>
                 <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion+1)],'options' => ['method' => 'post', 'style'=>'display: inline-block']]); ?>
                 <input type="hidden" name="answer" value="0">
+                <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id')?>">
                 <button type="submit" class="button primary1">Нет</button>
                 <?php ActiveForm::end(); ?>
             </section>
