@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
         <div class="question-form">
-
+            <?php var_dump($isNew) ?>
             <?php $form = ActiveForm::begin(['action' => ['question/' . ($isNew ? "save" : "update") . 'answers/*?id=' . $id], 'options' => ['method' => 'post']]); ?>
 
             <?php

@@ -72,6 +72,7 @@ class ContentController extends Controller
         $model = new Content();
 
         if ($model->load(Yii::$app->request->post())) {
+
             $model->updated_at = strtotime($model->updated_at);
             $model->created_at = strtotime($model->created_at);
             $model->save();

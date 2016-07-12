@@ -1,5 +1,6 @@
 <?php
 //use Yii;
+$this->title = 'Корпорация Имиджа | Тест';
 ?>
 <div class="container">
     <nav class="navbar">

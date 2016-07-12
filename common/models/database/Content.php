@@ -33,6 +33,9 @@ class Content extends \yii\db\ActiveRecord
             [['title', 'updated_at', 'created_at'], 'required'],
             [['description'], 'string'],
             [['title', 'img'], 'string', 'max' => 500],
+            [['meta_description'], 'string', 'max' => 170],
+            [['meta_title'], 'string', 'max' => 120],
+            [['meta_keys'], 'string', 'max' => 160],
         ];
     }
 

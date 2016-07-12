@@ -143,6 +143,7 @@ class QuestionController extends Controller
     {
         $allAnswers=[];
         if(Yii::$app->request->post('Answer')){
+//            print_r(Yii::$app->request->post('Answer'));die();
             $typeQuestion = Question::findOne(Yii::$app->request->post('Answer')[1]['question_id']);
             $validate_flag=true;
            foreach (Yii::$app->request->post('Answer') as $answer){
@@ -323,7 +324,8 @@ class QuestionController extends Controller
                 return $this->renderingQuestionTypeUpdate($model, '_textimage');
                 break;
             case 'skinColor':
-                return $this->renderingQuestionTypeCreate($model, '_skincolor');
+                return $this->renderingQuestionTypeUpdate($model, '_skincolor');
+                break;
             case 'aboutMeColour':
                 return $this->renderingQuestionTypeUpdate($model, '_aboutmecolour');
                 break;

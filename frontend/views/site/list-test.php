@@ -13,7 +13,7 @@ use common\models\search\Discount;
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Корпорация Имиджа | Список тестов';
 ?>
     <!--[if IE]>
     <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>

@@ -28,7 +28,8 @@ $this->endBlock();
 <div class="question-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php 
+    <?php
+
         echo  $this->render($template, [
             'answers_models' => $answers_models,
             'id' => $id,

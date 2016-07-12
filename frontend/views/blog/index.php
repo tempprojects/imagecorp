@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use common\models\database\Gallery;
 use common\models\database\Slider;
-
+$this->title = 'Корпорация Имиджа | Блог';
 /* @var $this yii\web\View */
 ?>
 <!-- head-banner-->

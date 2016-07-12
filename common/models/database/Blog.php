@@ -36,6 +36,9 @@ class Blog extends \yii\db\ActiveRecord
         return [
             [['category', 'blog_media_id', 'title', 'content', 'alias', 'updated_at', 'created_at'], 'required'],
             [['category', 'blog_media_id', 'like'], 'integer'],
+            [['meta_description'], 'string', 'max' => 170],
+            [['meta_title'], 'string', 'max' => 120],
+            [['meta_keys'], 'string', 'max' => 160],
             [['description', 'content'], 'string'],
             [['title', 'alias'], 'string', 'max' => 500],
         ];
@@ -57,6 +60,9 @@ class Blog extends \yii\db\ActiveRecord
             'like' => 'Like',
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
+             'meta_description' => 'Meta description',
+            'meta_title' => 'Meta title',
+            'meta_keys' => 'Meta keys',
         ];
     }
 }
