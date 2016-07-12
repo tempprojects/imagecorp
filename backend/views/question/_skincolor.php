@@ -12,8 +12,7 @@ use common\widgets\Gallery;
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
 <div class="question-form">
-    
-    <?php $form = ActiveForm::begin(['action' => ['question/' . ($isNew?"save":"update") .'answers/*?id=' . $id],'options' => ['method' => 'post']]); ?>
+   <?php $form = ActiveForm::begin(['action' => ['question/' . ($isNew ? "save" : "update") .'answers/*?id=' . $id],'options' => ['method' => 'post']]); ?>
 
     <?php 
         $cnt = 1;
@@ -30,10 +29,12 @@ use common\widgets\Gallery;
 
             $img = is_object($value->mainImage) ? $value->mainImage->getAttribute('src') : null;
             echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-' . $key . '-main_image_id', 'img' => $img]);
-
             echo $form->field($value, '[' . $key . ']main_image_id')->hiddenInput(['maxlength' => true])->label(false);
 
+
         }  else {
+            echo (!$isNew) ? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false) : "";
+            echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
             echo $form->field($value, '[' . $key . ']value')->textInput(['required' => 'required']);
             echo $form->field($value, '[' . $key . ']description')->textInput();
 

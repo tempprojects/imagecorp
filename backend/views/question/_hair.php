@@ -72,7 +72,6 @@
                         echo (!$isNew)? $form->field($value, '[' . $key . ']id')->hiddenInput()->label(false):"";
                         echo $form->field($value, '[' . $key . ']question_id')->hiddenInput()->label(false);
                         echo $form->field($value, '[' . $key . ']value', [ 'options' => [ 'style' => 'display: none']])->textInput(['type' => 'number', 'value'=> $parentcnt.'.' . ($childcnt-1)])->label(false);
-
                         $img = is_object($value->mainImage)?$value->mainImage->getAttribute('src'): null;
                         echo Gallery::widget(['type' => 'tests', 'idInput' => 'answer-'.$key.'-main_image_id', 'img' => $img]);
                         echo $form->field($value, '[' . $key . ']main_image_id')->hiddenInput(['maxlength' => true])->label(false);

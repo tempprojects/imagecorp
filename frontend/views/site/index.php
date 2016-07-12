@@ -7,7 +7,7 @@ use common\models\database\Slider;
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Корпорация Имиджа';
 ?>
 
 <?= $this->render('/_block/_header'); ?>
@@ -51,11 +51,11 @@ $this->title = 'My Yii Application';
     <div class="container-main">
         <div class="text-content">
 
-
             <h2 class="section-title"><?= $content[0]->title; ?></h2>
-            <?= $content[0]->description; ?>
+            <div class="text-content_wrapper" style="transition:.6s">
+                <?= $content[0]->description; ?>
+            </div>
             <span class="read-more">Читать далее></span>
-
 
         </div>
         <div class="about-slider">
@@ -298,3 +298,20 @@ $this->title = 'My Yii Application';
 <!-- end contact-us-->
 
 <?= $this->render('/_block/_footer'); ?>
+<?php $this->registerJs("
+jQuery(document).ready(function($){
+var curHeight = $('.text-content_wrapper').height();
+$('.text-content_wrapper').css({'height':'357px','overflow':'hidden'});
+console.log(curHeight);
+ $('span.read-more').click(function(){
+     if($('.text-content_wrapper').height() <= 357){
+        $(this).parent('.text-content').find('.text-content_wrapper').css({'height':curHeight+'px' , 'overflow':'visible'});
+        $(this).text('<Читать далее');
+     } else {
+        $(this).parent('.text-content').find('.text-content_wrapper').css({'height':'357px','overflow':'hidden'});
+        $(this).text('Читать далее>');
+     }
+
+ });
+});
+"); ?>

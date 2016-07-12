@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 use common\models\database\Gallery;
 use common\models\database\Slider;
-
+$this->title = 'Корпорация Имиджа | '. $model->title;
 /* @var $this yii\web\View */
 
 $media = \common\models\database\BlogMedia::findOne(['id' => $model->blog_media_id]);

@@ -206,7 +206,8 @@ class TestController extends Controller
                 return $this->render('_face', [ 
                         'model' => $model,
                         'currentQuestion' => $questionNumber,
-                        'questionsQuantity'=>$questionsQuantity
+                        'questionsQuantity'=>$questionsQuantity,
+                        'photo'=>$photo
                     ]);
                 break;
             case 'hair':
