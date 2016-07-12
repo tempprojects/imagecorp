@@ -77,10 +77,9 @@ class TestValuesController extends Controller
 
         //matrix model
         $searchModelMatrix = new TestValuesMatrixSearch();
+        $searchModelMatrix->test_id=$id;
         $dataProviderMatrix = $searchModelMatrix->search(Yii::$app->request->queryParams);
 
-        
-        
         //creating dinamic model for creatin matrix
         $matrixModel = DynamicModel::validateData(array('question_horizontal_id', 'question_vertical_id'), [
                              [['question_horizontal_id', 'question_vertical_id'], 'required', 'skipOnEmpty'=>true],

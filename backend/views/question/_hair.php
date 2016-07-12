@@ -26,10 +26,7 @@
                     echo '<div class="clearfix"></div>';
                     $switchTree=false;
                 }
-                if($key==1){
-                    $childcnt = 1;
-                    $parentcnt = 1;
-                }
+
 
                 if(($cntAnswers/4)>=($cnt))
                 {

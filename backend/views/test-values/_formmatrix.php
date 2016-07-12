@@ -25,6 +25,7 @@ use yii\widgets\ActiveForm;
     <?= Html::hiddenInput('TestValuesMatrix[question_horizontal_id]', $questionH->getAttribute('id')); ?>
     <?= Html::hiddenInput('TestValuesMatrix[test_id]', $questionV->getAttribute('test_id')); ?>
 
+
 <table class="table">
     <tr>
         <th></th>
@@ -39,7 +40,6 @@ use yii\widgets\ActiveForm;
             }
         ?>
     </tr>
-
         <?php 
             $cnt= 0; 
             foreach ($ownModel as $key => $value) {
