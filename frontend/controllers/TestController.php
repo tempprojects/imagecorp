@@ -140,12 +140,10 @@ class TestController extends Controller
         Yii::$app->view->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.16/css/bulma.min.css');
         Yii::$app->view->registerCssFile('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 
-
-
         //meta
-       Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->test->getAttribute('meta_description')]);
-       Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $model->test->getAttribute('meta_title')]);
-       Yii::$app->view->registerMetaTag(['name' => 'keys', 'content' => $model->test->getAttribute('meta_keys')]);
+        Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->test->getAttribute('meta_description')]);
+        Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $model->test->getAttribute('meta_title')]);
+        Yii::$app->view->registerMetaTag(['name' => 'keys', 'content' => $model->test->getAttribute('meta_keys')]);
 
         switch ($model->questionType->getAttribute('slug')) {
             case 'sympleText':
