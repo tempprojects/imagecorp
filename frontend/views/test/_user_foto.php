@@ -58,3 +58,15 @@ echo Html::csrfMetaTags();
 <footer>
     <div class="container"></div>
 </footer>
+<?php $this->registerJs("
+jQuery(document).ready(function ($) {
+    var photo = '".$photo."';
+    if(photo.length>0){
+        $('.button.primary').removeClass('is-disabled');
+        $('.button.primary').addClass('ready');
+    } else {
+        $('.button.primary').removeClass('ready');
+        $('.button.primary').addClass('is-disabled');
+    }
+});");
+?>
