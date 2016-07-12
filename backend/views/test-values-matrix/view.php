@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\database\TestValues */
+/* @var $model common\models\database\TestValuesMatrix */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Test Values', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Test Values Matrices', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="test-values-view">
+<div class="test-values-matrix-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,10 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'test_id',
-            'from',
-            'to',
-            'answer',
-            'query_values:ntext',
+            'question_horizontal_id',
+            'question_vertical_id',
+            'test_values_id',
+            'serialize:ntext',
+            'active_flag',
         ],
     ]) ?>
 

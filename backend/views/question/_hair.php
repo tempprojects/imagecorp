@@ -27,6 +27,7 @@
                     $switchTree=false;
                 }
 
+
                 if(($cntAnswers/4)>=($cnt))
                 {
                     $childcnt = 1;
