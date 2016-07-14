@@ -34,7 +34,7 @@ echo Html::csrfMetaTags();
                     <div class="cropper is-pulled-right">
                         <div id='image-cropper' class="image-editor">
                             <div
-                                class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="' . $photo . '" style="">'; ?></div>
+                                class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="" style="">'; ?></div>
                             <div class="tools-box">
                                 <span class="minus"></span>
                                 <input type="range" class="cropit-image-zoom-input">

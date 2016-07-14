@@ -28,7 +28,7 @@ echo Html::csrfMetaTags();
                 <div class="cropper">
                     <div id='image-cropper' class="image-editor abc123123">
                         <div
-                            class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="' . $photo . '" style="">'; ?></div>
+                            class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="" style="">'; ?></div>
                         <!-- <div class="image-size-label">
                         </div> -->
                         <div class="tools-box">
@@ -40,8 +40,7 @@ echo Html::csrfMetaTags();
                             <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>"/>
 
                             <label for="file" class="cam is-pulled-right">
-                                <img src="<?= (Yii::$app->controller->route == 'site/index') ?>/theme/img/ic/camera.png"
-                                     alt="">
+                                <img src="<?= (Yii::$app->controller->route == 'site/index') ?>/theme/img/ic/camera.png" alt="">
                             </label>
                         </div>
                     </div>
@@ -51,7 +50,7 @@ echo Html::csrfMetaTags();
     </section>
     <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id')?>">
     <section class="section is-text-centered">
-        <button type="submit" class="button primary">Далее</button>
+        <button type="submit" id="photosubmit" class="button primary">Далее</button>
     </section>
     <?php ActiveForm::end(); ?>
 </div>
@@ -59,15 +58,4 @@ echo Html::csrfMetaTags();
 <footer>
     <div class="container"></div>
 </footer>
-<?php $this->registerJs("
-jQuery(document).ready(function ($) {
-    var photo = '".$photo."';
-    if(photo.length>0){
-        $('.button.primary').removeClass('is-disabled');
-        $('.button.primary').addClass('ready');
-    } else {
-        $('.button.primary').removeClass('ready');
-        $('.button.primary').addClass('is-disabled');
-    }
-});");
 ?>

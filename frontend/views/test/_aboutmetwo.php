@@ -34,41 +34,44 @@ echo Html::csrfMetaTags();
             ?>
             <div class="columns">
                 <?php foreach ($model->answers as $key => $answer):
-                    ?>
-                    <div class="column is-6 is-flex">
-                        <div class="box">
-                            <article class="media">
-                                <div class="media-content is-unselectable">
-                                    <?= $answer->getAttribute('description'); ?>
-                                </div>
-                            </article>
-                            <div class="is-block imgs">
-                                <?= $answer->mainImage ? '<img src="' . $answer->mainImage->getAttribute('src') . '" alt="Image">' : "" ?>
-                                <?= $answer->subImage ? '<img src="' . $answer->subImage->getAttribute('src') . '" alt="Image">' : "" ?>
+                ?>
+                <div class="column is-6 is-flex">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-content is-unselectable">
+                                <?= $answer->getAttribute('description'); ?>
                             </div>
-                            <div class="is-block">
-                                <div
-                                    class="uppercase is-text-centered text_0"><?= $answer->getAttribute('buttton_text') ?>
-                                    <input type="radio" id="c<?= $key ?>" name="answer"
-                                           value="<?= $answer->getAttribute('value') ?>">
-                                    <label for="c<?= $key ?>"><span></span></label>
-                                </div>
+                        </article>
+                        <div class="is-block imgs">
+                            <?= $answer->mainImage ? '<img src="' . $answer->mainImage->getAttribute('src') . '" alt="Image">' : "" ?>
+                            <?= $answer->subImage ? '<img src="' . $answer->subImage->getAttribute('src') . '" alt="Image">' : "" ?>
+                        </div>
+                        <div class="is-block">
+                            <div
+                                class="uppercase is-text-centered text_0"><?= $answer->getAttribute('buttton_text') ?>
+                                <input type="radio" id="c<?= $key ?>" name="answer"
+                                       value="<?= $answer->getAttribute('value') ?>">
+                                <label for="c<?= $key ?>"><span></span></label>
                             </div>
-                            <?php endforeach; ?>
-			</div>
-                        <?php else:?>
-                            <input type="hidden" name="answer" value="0">
-                        <?php endif; ?>
-		</section>
-                <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id')?>">
-		<section class="section is-text-centered">
-                     <button type="submit" class="button primary">Далее</button>
-		</section>
-                <?php ActiveForm::end(); ?>
-	</div>
-	<!-- /Main Content -->
-	<footer>
-		<div class="container"></div>
-	</footer>
-	<!-- /End -->
+                        </div>
+                    </div>
+                </div>
+                    <?php endforeach; ?>
+
+            </div>
+        <?php else: ?>
+            <input type="hidden" name="answer" value="0">
+        <?php endif; ?>
+    </section>
+    <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id') ?>">
+    <section class="section is-text-centered">
+        <button type="submit" class="button primary">Далее</button>
+    </section>
+    <?php ActiveForm::end(); ?>
+</div>
+<!-- /Main Content -->
+<footer>
+    <div class="container"></div>
+</footer>
+<!-- /End -->
 

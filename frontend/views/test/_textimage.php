@@ -9,10 +9,7 @@ echo Html::csrfMetaTags();
 /* @var $currentQuestion */
 /* $var $questionsQuantity */
 ?>
-
 <?= $this->render('/_block/_header_payment'); ?>
-
-
 <!-- Main Content -->
 <div class="container">
     <section class="hero">

@@ -26,10 +26,11 @@ echo Html::csrfMetaTags();
         </div>
     </section>
     <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test']]); ?>
+ <?php
+        $cnt = count($model->answers);?>
 
-    <section class="section coloring colr-4">
+    <section class="section coloring <?= $cnt? ($model->answers[0]->getAttribute('title')?$model->answers[0]->getAttribute('title'):""):""?>">
         <?php
-        $cnt = count($model->answers);
 
         if ($cnt):
             ?>
@@ -37,22 +38,19 @@ echo Html::csrfMetaTags();
                 <div class="column is-half">
                     <div class="cropper is-pulled-right">
                         <div id='image-cropper' class="image-editor">
-                            <div class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="' . $photo . '" style="">'; ?></div>
+                            <div class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="" style="">'; ?></div>
                             <div class="tools-box">
                                 <span class="minus"></span>
                                 <input type="range" class="cropit-image-zoom-input">
                                 <span class="plus"></span>
                                 <input type="file" name="file" class="cropit-image-input">
                                 <label for="file" class="cam is-pulled-right">
-                                    <img
-                                        src="<?= (Yii::$app->controller->route == 'site/index') ?>/theme/img/ic/camera.png"
-                                        alt="">
+                                    <img src="<?= (Yii::$app->controller->route == 'site/index') ?>/theme/img/ic/camera.png" alt="">
                                 </label>
                             </div>
                         </div>
                     </div>
-
-				</div>
+			</div>
 				<div class="column is-2 is-offset-1 is-third-tablet is-half-mobile is-quarter-desktop">
                                     <?php foreach ($model->answers as $key => $answer): ?>
 					<div class="box is-block">

@@ -1,11 +1,14 @@
 jQuery(document).ready(function ($) {
-    var csrfToken = $('meta[name="csrf-token"]').attr("content");
+    if(localStorage.getItem("imgData")){
+        $('img.cropit-preview-image').attr('src', localStorage.getItem("imgData"));
+        $('#photosubmit.button.primary').removeClass('is-disabled');
+        $('#photosubmit.button.primary').addClass('ready');
+    };
+    
     $('#foto_test').submit(function(e) {
         var imageData = $('#image-cropper').cropit('export');
-        $.ajax({
-            data : {_csrf : csrfToken, image: imageData},
-            url: '/test/test/*?number=1',
-            type: 'post',
-        });
+        if(imageData){
+             localStorage.setItem("imgData", imageData);
+        }
     });
 });

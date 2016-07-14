@@ -92,7 +92,6 @@ class TestController extends Controller
             $session->close();
             return $this->actionTest($passedQuestions + 1);
         }
-
         $questionsQuantity = count(Test::findOne($session->get('test_id'))->question);
 
         //if isset post
@@ -103,18 +102,8 @@ class TestController extends Controller
             $answewrsid[Yii::$app->request->post('answewrid')] = $number - 1;
             $answewrs = $session->set('answewrs', $answewrs);
             $answewrs = $session->set('answewrsid', $answewrsid);
-            $session->set('passed_questions', $number - 1);
+            $session->set('passed_questions', $number - 1);           
         }
-        $img = !empty($_POST['image']) ? $_POST['image'] : '';
-        if ($img) {
-            if ($session->get('user_photo') != '') {
-                unset($session['user_photo']);
-            }
-            $session->set('user_photo', $img);
-            die;
-        }
-
-        $photo = $session->get('user_photo');
 
         //if test has been passed
         if ($number > $questionsQuantity) {
@@ -122,7 +111,7 @@ class TestController extends Controller
         }
 
         $questionModel = Question::find()->where(['test_id' => $session->get('test_id')])->orderBy('priority')->offset($number - 1)->one();
-        return $this->getQuestionSwith($questionModel, $number, $questionsQuantity, $photo);
+        return $this->getQuestionSwith($questionModel, $number, $questionsQuantity);
     }
 
     /**
@@ -130,15 +119,15 @@ class TestController extends Controller
      * @param object $model (model of Answer record)
      * @return mixed
      */
-    protected function getQuestionSwith($model, $questionNumber, $questionsQuantity,$photo){
+    protected function getQuestionSwith($model, $questionNumber, $questionsQuantity){
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/flexie/1.0.3/flexie.min.js', ['depends' => 'yii\web\YiiAsset']);
         Yii::$app->view->registerJsFile('js/jquery.cropit.js', ['depends' => 'frontend\assets\AppAsset']);
-        Yii::$app->view->registerJsFile('js/custom.js', ['depends' => 'frontend\assets\AppAsset']);
+        
         Yii::$app->view->registerJsFile('js/main.js', ['depends' => 'frontend\assets\AppAsset']);
+        
         Yii::$app->view->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.16/css/bulma.min.css');
         Yii::$app->view->registerCssFile('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
-
         //meta
         Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->test->getAttribute('meta_description')]);
         Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $model->test->getAttribute('meta_title')]);
@@ -199,7 +188,6 @@ class TestController extends Controller
                         'model' => $model,
                         'currentQuestion' => $questionNumber,
                         'questionsQuantity'=>$questionsQuantity,
-                        'photo'=>$photo
                     ]);
                 break;
             case 'face':
@@ -207,7 +195,6 @@ class TestController extends Controller
                         'model' => $model,
                         'currentQuestion' => $questionNumber,
                         'questionsQuantity'=>$questionsQuantity,
-                        'photo'=>$photo
                     ]);
                 break;
             case 'hair':
@@ -229,7 +216,6 @@ class TestController extends Controller
                     'model' => $model,
                     'currentQuestion' => $questionNumber,
                     'questionsQuantity'=>$questionsQuantity,
-                    'photo'=>$photo
                 ]);
                 break;
             default:
@@ -247,7 +233,7 @@ class TestController extends Controller
     public function actionResult($test)
     {        
         $session = Yii::$app->session;
-        
+
         if($session->get('test_id')!=$test)
         {
             return $this->redirect(['test', 'number' => $session->get('passed_questions', 0)]);
@@ -294,7 +280,6 @@ class TestController extends Controller
             $query->select('answer, query_values')->from('test_values')->where(['id' => $testValueId]);
             $result = $query->one();
 
-            
             return $this->render('result', [ 
                            'result' => $result,
                     ]);
