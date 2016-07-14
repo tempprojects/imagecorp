@@ -25,7 +25,8 @@ echo Html::csrfMetaTags();
             </div>
         </div>
     </section>
-    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test']]); ?>
+<!--    --><?php //print_r($model->getAttribute('id')); ?>
+    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test_'.$model->getAttribute('id')]]); ?>
 
     <section class="section coloring colr-4">
         <?php
@@ -37,7 +38,8 @@ echo Html::csrfMetaTags();
                 <div class="column is-half">
                     <div class="cropper is-pulled-right">
                         <div id='image-cropper' class="image-editor">
-                            <div class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="' . $photo . '" style="">'; ?></div>
+                            <div
+                                class="cropit-preview"><?php echo '<img class="cropit-preview-image" alt="" src="' . $photo . '" style="">'; ?></div>
                             <div class="tools-box">
                                 <span class="minus"></span>
                                 <input type="range" class="cropit-image-zoom-input">
@@ -52,36 +54,37 @@ echo Html::csrfMetaTags();
                         </div>
                     </div>
 
-				</div>
-				<div class="column is-2 is-offset-1 is-third-tablet is-half-mobile is-quarter-desktop">
-                                    <?php foreach ($model->answers as $key => $answer): ?>
-					<div class="box is-block">
-                                            <div class="is-block">
-                                                <?=  $answer->mainImage ?  '<img src="' . $answer->mainImage->getAttribute('src') . '">':"" ?> 
-                                            </div>
-                                            <div class="is-block">
-                                                <div class="is-text-centered">
-                                                    <?= $answer->getAttribute('buttton_text')?>
-                                                    <input type="radio" id="r<?= $key ?>" name="answer" value="<?=$answer->getAttribute('value')?>">
-                                                    <label for="r<?= $key ?>"><span></span></label>
-                                                </div>
-                                            </div>
-					</div>
-                                    <?php endforeach;  ?>
-				</div>
-			</div>
-                    <?php else:?>
-                       <input type="hidden" name="answer" value="0">
-                        <?php endif; ?>
-		</section>
-                <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id')?>">
-		<section class="section is-text-centered">
-                     <button type="submit" class="button primary">Далее</button>
-		</section>
-                <?php ActiveForm::end(); ?>
-	</div>
-	<!-- /Main Content -->
-	<footer>
-		<div class="container"></div>
-	</footer>
-	<!-- /End -->
+                </div>
+                <div class="column is-2 is-offset-1 is-third-tablet is-half-mobile is-quarter-desktop">
+                    <?php foreach ($model->answers as $key => $answer): ?>
+                        <div class="box is-block">
+                            <div class="is-block">
+                                <?= $answer->mainImage ? '<img src="' . $answer->mainImage->getAttribute('src') . '">' : "" ?>
+                            </div>
+                            <div class="is-block">
+                                <div class="is-text-centered">
+                                    <?= $answer->getAttribute('buttton_text') ?>
+                                    <input type="radio" id="r<?= $key ?>" name="answer"
+                                           value="<?= $answer->getAttribute('value') ?>">
+                                    <label for="r<?= $key ?>"><span></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <input type="hidden" name="answer" value="0">
+        <?php endif; ?>
+    </section>
+    <input type="hidden" name="answewrid" value="<?= $model->getAttribute('id') ?>">
+    <section class="section is-text-centered">
+        <button type="submit" class="button primary">Далее</button>
+    </section>
+    <?php ActiveForm::end(); ?>
+</div>
+<!-- /Main Content -->
+<footer>
+    <div class="container"></div>
+</footer>
+<!-- /End -->

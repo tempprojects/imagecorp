@@ -271,12 +271,15 @@ class TestController extends Controller
                     ]);
         }
         else{
+
             $answewrs = $session->get('answewrs');
+
             $answewrsNumbersByid=$session->get('answewrsid');
             
             $query = new Query;
             $query->select(' * ')->from('test_values_matrix')->where(['test_id' => $test])->andWhere(['active_flag' => 1]);
             $result = $query->one();
+
             
             if(!$result){
                 return $this->redirect(['list-test']);

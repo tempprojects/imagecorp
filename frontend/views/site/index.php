@@ -7,7 +7,7 @@ use common\models\database\Slider;
 
 /* @var $this yii\web\View */
 
-$this->title = 'Корпорация Имиджа';
+$this->title = 'Корпорация Имиджа - онлайн-сервис по подбору имиджа';
 ?>
 
 <?= $this->render('/_block/_header'); ?>

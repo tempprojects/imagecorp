@@ -47,11 +47,9 @@ $item = [
 
     <?= $form->field($model, 'img')->hiddenInput(['maxlength' => true])->label(false); ?>
 
-    <?= $form->field($model, 'result_type_id')->dropDownList(ArrayHelper::map(ResultType::find()->all(),'id','title'), ['prompt' => 'Выберите тип результата...']); ?>
-
     <div class="row">
         <?php
-        if(!$update){
+        if (!$update) {
             ?>
             <div class="col-md-6">
                 <div class="form-group">
@@ -67,23 +65,37 @@ $item = [
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <?= $form->field($model, 'result_type_id')->dropDownList(ArrayHelper::map(ResultType::find()->all(), 'id', 'title'), ['prompt' => 'Выберите тип результата...']); ?>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <?= $form->field($model, 'like')->textInput(); ?>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-2 col-lg-offset-5">
             <h2>SEO</h2>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-4">
-             <?= $form->field($model, 'meta_description')->textInput(); ?>
+            <?= $form->field($model, 'meta_description')->textInput(); ?>
         </div>
         <div class="col-md-4">
-             <?= $form->field($model, 'meta_title')->textInput(); ?>
+            <?= $form->field($model, 'meta_title')->textInput(); ?>
         </div>
         <div class="col-md-4">
-             <?= $form->field($model, 'meta_keys')->textInput(); ?>
+            <?= $form->field($model, 'meta_keys')->textInput(); ?>
         </div>
     </div>
-
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
