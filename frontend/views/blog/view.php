@@ -69,7 +69,7 @@ $media = \common\models\database\BlogMedia::findOne(['id' => $model->blog_media_
                         <p class="post-meta">
                             <span class="author-s">Александа Богданова</span>
                             <time class="post-time-s"><?= Yii::$app->formatter->asDate(date("Y-m-d", $model->updated_at), 'php:d F, G:i'); ?></time>
-                            <span class="reading-number-s"><?= $model->like; ?></span>
+                            <span class="reading-number-s"><?= ($model->views?$model->views:0) ?></span>
                         </p>
                     </div>
                 </div>

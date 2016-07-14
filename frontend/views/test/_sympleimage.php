@@ -26,10 +26,11 @@ echo Html::csrfMetaTags();
     <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'style' => 'display: inline-block']]); ?>
     <section>
         <?php $cnt = count($model->answers);
-        if ($cnt): ?>
+        if($cnt): 
+            $firsRow = ceil($cnt/2);?>
             <div class="columns is-mobile is-multiline content-center">
             <?php foreach ($model->answers as $key => $answer):
-                if (($key) % 4 == 0): ?>
+                if (($key) % $firsRow == 0): ?>
                     </div>
                     <div class="columns is-mobile is-multiline content-center">
                 <?php endif; ?>

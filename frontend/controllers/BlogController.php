@@ -30,6 +30,11 @@ class BlogController extends \yii\web\Controller
         Yii::$app->view->registerJsFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', ['depends' => 'yii\web\YiiAsset']);
         if(Yii::$app->request->get('element') && Blog::findOne(['alias' => Yii::$app->request->get('element')])){
             $model = Blog::findOne(['alias' => Yii::$app->request->get('element')]);
+
+            $views = $model->getAttribute('views')?$model->getAttribute('views'):0;
+            $model->setAttribute("views", $views+1);
+            $model->save();
+
             $also = Blog::find()->where(['category' => $model->category])->limit(3)->all();
 
             //meta

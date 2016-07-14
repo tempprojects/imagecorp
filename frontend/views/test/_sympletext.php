@@ -29,18 +29,24 @@ echo Html::csrfMetaTags();
     <section>
         <?php
         $cnt = count($model->answers);
-
+        $styleClass = false; 
+        $firsRow = ceil($cnt/2);
                        if($cnt): 
+                            foreach ($model->answers as $key => $answer){
+                                if(mb_strlen(trim($answer->getAttribute('description')))>45){
+                                   $styleClass=true;
+                                }
+                           }
                     ?>
 			<div class="columns is-mobile is-multiline content-center">
                         <?php foreach ($model->answers as $key => $answer): 
-                                if(($key)%4 == 0):
+                                if(($key)%$firsRow == 0):
                         ?>
                             </div>
                             <div class="columns is-mobile is-multiline content-center">
                         <?php endif; ?>
                             <div class="column is-flex is-3">
-                                <div class="box style1">
+                                <div class="box style<?= $styleClass? "1": ""?>">
                                     <div class="is-block media-content is-text-centered">
                                         <?= $answer->getAttribute('description') ?>
                                     </div>

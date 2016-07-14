@@ -134,7 +134,7 @@ $this->title = 'Корпорация Имиджа | Блог';
                                                 break;
                                         }
                                         //echo '<img class="blogIndexImg" src="/theme/img/nulled_index_blog.png" style="background-image: url(' . Gallery::findOne(['id' => $blog[$d]->blog_media_id])->src . ')" alt="posts">';
-                                        echo '<span class="reading-number">' . $blog[$d]->like . '</span>';
+                                        echo '<span class="reading-number">' . ($blog[$d]->views?$blog[$d]->views:0) . '</span>';
                                         echo '</div>';
                                         echo '<h3 class="post-title"><a href="'.Url::toRoute(['/blog/view', 'element' => $blog[$d]->alias]).'">' . $blog[$d]->title . '</a></h3>';
                                         echo '<p class="post-content">' . $blog[$d]->description . '</p>';

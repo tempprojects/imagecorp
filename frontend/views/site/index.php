@@ -141,7 +141,7 @@ $this->title = 'Корпорация Имиджа - онлайн-сервис п
                             echo $media->video;
                             break;
                     }
-                    echo '<span class="reading-number">'.$item->like.'</span>';
+                    echo '<span class="reading-number">'.($item->views?$item->views:0).'</span>';
                     echo '</div>';
                     echo '<h3 class="post-title"><a href="'.Url::toRoute(['/blog/view/', 'element' => $item->alias]).'">'.$item->title.'</a></h3>';
                     echo '<p class="post-content">'.$item->description.'</p>';
@@ -315,3 +315,4 @@ console.log(curHeight);
  });
 });
 "); ?>
+
