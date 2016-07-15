@@ -1,11 +1,6 @@
 <?php
-
 namespace common\models\database;
-
 use Yii;
-use common\models\database\Question;
-use common\models\database\TestValues;
-
 /**
  * This is the model class for table "test".
  *
@@ -20,10 +15,20 @@ use common\models\database\TestValues;
  * @property integer $price
  * @property integer $updated_at
  * @property integer $created_at
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $meta_keys
+ * @property integer $result_type_id
+ *
+ * @property Question[] $questions
+ * @property ResultType $resultType
+ * @property TestReferences[] $testReferences
+ * @property TestReferences[] $testReferences0
+ * @property TestValues[] $testValues
+ * @property TestValuesMatrix[] $testValuesMatrices
  */
 class Test extends \yii\db\ActiveRecord
 {
-    public $file;
     /**
      * @inheritdoc
      */
@@ -71,22 +76,56 @@ class Test extends \yii\db\ActiveRecord
             'meta_keys' => 'Meta keys',
         ];
     }
-    
+
     //Rull connection to Question model(table)
     public function getQuestion()
     {
         return $this->hasMany(Question::className(), ['test_id' => 'id']);
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResultType()
+    {
+        return $this->hasOne(ResultType::className(), ['id' => 'result_type_id']);
+    }
 
-    //Rull connection to Question model(table)
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTestReferences()
+    {
+        return $this->hasMany(TestReferences::className(), ['test_parrent_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTestReferences0()
+    {
+        return $this->hasMany(TestReferences::className(), ['test_child_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getTestValues()
     {
         return $this->hasMany(TestValues::className(), ['test_id' => 'id']);
     }
-
+    
+    
     //Rull connection to Question model(table)
     public function getAllTestvalue()
     {
         return $this->hasMany(TestValues::className(), ['test_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTestValuesMatrices()
+    {
+        return $this->hasMany(TestValuesMatrix::className(), ['test_id' => 'id']);
     }
 }

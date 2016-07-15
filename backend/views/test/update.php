@@ -26,7 +26,9 @@ $this->endBlock();
         <?= $this->render('_form', [
             'model' => $model,
             'img' => $img,
-            'update' => true
+            'update' => true,
+            'dataProviderReference'=>$dataProviderReference,
+            'referenceModel'=>$referenceModel
         ]) ?>
     </div>
 </div>

@@ -5,7 +5,8 @@ use yii\widgets\ActiveForm;
 use common\widgets\Gallery;
 use common\models\database\ResultType;
 use yii\helpers\ArrayHelper;
-
+use yii\grid\GridView;
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $model common\models\database\Test */
 /* @var $form yii\widgets\ActiveForm */
@@ -16,6 +17,14 @@ $item = [
     3 => 'Свадьба',
 ];
 
+    $resultType= ArrayHelper::map(ResultType::find()->all(), 'id', 'title');
+    if(!$model->isNewRecord){
+        if($model->testReferences0){
+            if(isset($resultType[3])){
+               unset($resultType[3]);
+            }
+        }
+    }
 ?>
 
 <div class="test-form">
@@ -69,7 +78,7 @@ $item = [
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <?= $form->field($model, 'result_type_id')->dropDownList(ArrayHelper::map(ResultType::find()->all(), 'id', 'title'), ['prompt' => 'Выберите тип результата...']); ?>
+                <?= $form->field($model, 'result_type_id')->dropDownList($resultType, ['prompt' => 'Выберите тип результата...']); ?>
             </div>
         </div>
         <div class="col-md-6">
@@ -96,11 +105,80 @@ $item = [
             <?= $form->field($model, 'meta_keys')->textInput(); ?>
         </div>
     </div>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
+    
+    <script>
 
+    </script>
+    
+    
     <?php ActiveForm::end(); ?>
+    <br><br><br>
+    <?php if(!$model->isNewRecord && $model->getAttribute('result_type_id')==3): ?>
 
+      <div class="row">
+          <div class="col-md-4">
+        <?php
+        Pjax::begin();
+        echo GridView::widget([
+        'dataProvider' => $dataProviderReference,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+             [
+                'header' => 'Дочерний тест',
+                'value' => function ($model) {
+                    $type =[
+                        1 => 'Женщина',
+                        2 => 'Мужчина',
+                        3 => 'Свадьба',
+                    ];
+                        return $model->testChild->getAttribute('title') . ' (' . $type[$model->testChild->getAttribute('type')] . ')';
+                },
+                'format' => 'raw',
+            ],
+            'position',
+
+
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{delete}',
+                'contentOptions' =>['class' => 'table_buttons'],
+                'buttons' => [
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['deletechildtest', 'id' => $model->id], ['title' => 'Delete', 'data' => ['confirm' => 'Are you sure you want to delete this item?','method' => 'post'], 'data-ajax' => '1', 'class'=>'modificator']);
+                    },
+                ],
+            ],
+        ],
+    ]); 
+    Pjax::end();
+?>
+          </div>
+            <div class="col-md-8">
+            <?php $formMatrix = ActiveForm::begin(['action' => ['test/addreftest'],'options' => ['method' => 'post']]);  ?>
+             <?= $formMatrix->field($referenceModel, 'test_parrent_id')->hiddenInput()->label(false);?>
+              <div class="row">
+                <div class="col-md-6">
+                      <br>
+                    <?= $formMatrix->field($referenceModel, 'test_child_id')->dropDownList($referenceModel->avilabletests, ['prompt' => 'Выберите тест...'])->label('Дочерний тест'); ?>
+                </div>
+                <div class="col-md-3">
+                     <br>
+                    <?= $formMatrix->field($referenceModel, 'position')->textInput(); ?>
+                </div>
+                <div class="col-md-2">
+                    <br> <br>
+                    <?= Html::submitButton('Add +' , ['class' => 'btn btn-success']) ?>
+                </div>
+            </div>
+            <?php 
+                ActiveForm::end();
+            ?>
+          </div>
+      </div>
+    <?php endif; ?>
 </div>

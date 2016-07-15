@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 
 /* @var $ownModel */
 /* @var $questionH \common\models\database\Question; */
@@ -29,13 +30,13 @@ use yii\widgets\ActiveForm;
 <table class="table">
     <tr>
         <th></th>
-        <th style="text-align: center;" colspan="<?= count($ownModel["1.1"]) ?>" ><?= $questionH->getAttribute('subtitle')?></th>
+        <th style="text-align: center;" colspan="<?= count(array_values($ownModel)[0]) ?>" ><?= $questionH->getAttribute('subtitle')?></th>
     </tr>
     <tr>
        <th></th>
        <th></th>
         <?php
-            foreach ($ownModel["1.1"] as $key => $value) {
+            foreach (array_values($ownModel)[0] as $key => $value) {
                 echo  "<th>{$key}</th>";
             }
         ?>
