@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/server/htdocs/imagecorp/backend/views/test/_form.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/backend/controllers/TestController.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/common/models/database/TestReferencesSearch.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/common/models/database/TestReferences.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/backend/views/test/update.php</file>
-            <file>file:/D:/server/htdocs/imagecorp/backend/views/test/index.php</file>
+            <file>file:/D:/server/htdocs/imagecorp/frontend/views/test/_sympletext.php</file>
+            <file>file:/D:/server/htdocs/imagecorp/frontend/controllers/TestController.php</file>
         </group>
     </open-files>
 </project-private>

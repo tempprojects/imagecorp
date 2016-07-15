@@ -25,7 +25,7 @@ echo Html::csrfMetaTags();
             </div>
         </div>
     </section>
-    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'style' => 'display: inline-block']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post']]); ?>
     <section>
         <?php
         $cnt = count($model->answers);
@@ -40,7 +40,7 @@ echo Html::csrfMetaTags();
                     ?>
 			<div class="columns is-mobile is-multiline content-center">
                         <?php foreach ($model->answers as $key => $answer): 
-                                if(($key)%$firsRow == 0):
+                                if(($key)%$firsRow == 0 && $key):
                         ?>
                             </div>
                             <div class="columns is-mobile is-multiline content-center">
