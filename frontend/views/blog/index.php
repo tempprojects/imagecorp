@@ -27,6 +27,7 @@ $this->title = 'Корпорация Имиджа | Блог';
             <div class="posts-content">
                 <div class="top-row">
                     <?php
+
                     if(2 < count($blog)) {
                         ?>
                         <aside class="widget-post">

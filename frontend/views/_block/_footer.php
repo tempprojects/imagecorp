@@ -21,9 +21,9 @@
 
         <div class="social-links">
             <a href="#"><img src="/theme/img/fb_footer.svg" alt=""></a>
-            <a href="#"><img src="/theme/img/vk_footer.svg" alt=""></a>
-            <a href="#"><img src="/theme/img/tw_footer.svg" alt=""></a>
-            <a href="#"><img src="/theme/img/yt_footer.svg" alt=""></a>
+            <a href="http://vk.com/imagecorp"><img src="/theme/img/vk_footer.svg" alt=""></a>
+            <a href="https://twitter.com/imagecorp?s=09"><img src="/theme/img/tw_footer.svg" alt=""></a>
+            <a href="https://www.youtube.com/channel/UCsEOsGrVbvMJvfqgN-vJCtA"><img src="/theme/img/yt_footer.svg" alt=""></a>
         </div>
     </div>
     <p class="copyrights">&copy; 2016 КОРПОРАЦИЯ ИМИДЖА. Интернет-сайт для девушек о стиле, красоте и развлечениях. </p>
