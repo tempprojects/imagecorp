@@ -38,7 +38,12 @@ $result_type = Test::findOne($_GET['id'])->getAttribute('result_type_id');
                 <?= $form->field($mod, '[' . $key . ']to')->textInput([ 'required' => 'required', 'type'=>'number', 'step'=>'0.01']) ?>
             </div>
             <?php endif; ?>
-            <div class="col-md-<?= $result_type==1?3:5?> col-lg-<?= $result_type==1?4:5?>">
+            <?php if($result_type==4):?>
+            <div class="col-md-2 col-lg-1">
+                <?= $form->field($mod, '[' . $key . ']from')->textInput([ 'required' => 'required', 'type'=>'number', 'step'=>'0.01'])->label('Значение')  ?>
+            </div>
+            <?php endif; ?>
+            <div class="col-md-<?= $result_type==1?3:($result_type==1 || $result_type==4)?> col-lg-<?= ($result_type==1 || $result_type==4)?4:5?>">
                 <?= $form->field($mod, '[' . $key . ']answer')->textInput([ 'required' => 'required']) ?>
             </div>
             <div class="col-md-<?= $result_type==1?3:5?> col-lg-<?= $result_type==1?5:6?>">

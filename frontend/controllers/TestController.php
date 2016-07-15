@@ -286,7 +286,7 @@ class TestController extends Controller
                 $resultRender[$testResult['test_id']]['result'] = $resultQuery;
                 $resultRender[$testResult['test_id']]['title'] = $testModel->getAttribute('title');
             }
-            else{
+            elseif($testModel->getAttribute('result_type_id')==2){
 
                 $answewrs = $testResult['answewrs']; 
 
@@ -314,9 +314,28 @@ class TestController extends Controller
 
                 $resultRender[$testResult['test_id']]['result'] = $resultQuery;
                 $resultRender[$testResult['test_id']]['title'] = $testModel->getAttribute('title');
+            }else{
+                $answewrs = $testResult['answewrs'];
+                $resultArr = [];
+                foreach ($answewrs as $answer) {
+                    if(!isset($resultArr[$answer])){
+                        $resultArr[$answer]=0;
+                    }
+                    $resultArr[$answer]++;
+                }
+
+                asort($resultArr);
+                $result = key($resultArr);
+
+                $query = new Query;
+                $query->select('answer, query_values')->from('test_values')->where(['from'=>$result])->andWhere(['test_id' => $testResult['test_id']]);
+
+                $resultQuery = $query->one();
+                $resultRender[$testResult['test_id']]['result'] = $resultQuery;
+                $resultRender[$testResult['test_id']]['title'] = $testModel->getAttribute('title');
             }
         }
-        
+
         return $this->render('result', [ 
                                'result' => $resultRender,
                         ]);
