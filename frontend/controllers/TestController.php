@@ -125,7 +125,7 @@ class TestController extends Controller
         Yii::$app->view->registerJsFile('js/jquery.cropit.js', ['depends' => 'frontend\assets\AppAsset']);
         
         Yii::$app->view->registerJsFile('js/main.js', ['depends' => 'frontend\assets\AppAsset']);
-        
+                Yii::$app->view->registerJsFile('js/custom.js', ['depends' => 'frontend\assets\AppAsset']);
         Yii::$app->view->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.16/css/bulma.min.css');
         Yii::$app->view->registerCssFile('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
         //meta

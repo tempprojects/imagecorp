@@ -25,7 +25,7 @@ echo Html::csrfMetaTags();
             </div>
         </div>
     </section>
-    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test'.$currentQuestion]]); ?>
     <section class="section">
         <?php $cnt = count($model->answers);
         if ($cnt): ?>

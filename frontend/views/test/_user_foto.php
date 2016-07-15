@@ -8,7 +8,7 @@ echo Html::csrfMetaTags();
 <?= $this->render('/_block/_header_payment'); ?>
 <!-- Main Content -->
 <div class="container">
-    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test'.$currentQuestion]]); ?>
     <section class="hero">
         <div class="hero-content">
             <h1 class="title"><?= $model->getAttribute('title') ?></h1>
