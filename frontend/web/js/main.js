@@ -7,7 +7,7 @@ $(function () {
 	if ($('.face').existing()) {
 		$('.image-editor').cropit({
 			imageState: {
-				src: 'http://imagec1s.bget.ru/new/img/sample1.png'
+				src: 'http://imagecorp.ru/theme/img/sample1.png'
 			}, 
 			onImageLoaded() {
 				//$('.primary').addClass("ready").removeClass("is-disabled");
@@ -19,25 +19,25 @@ $(function () {
 							var inputid = $(this).attr('id');
 							switch (inputid) {
 							case 'r1':
-								$('.faces').html("<img src='http://imagec1s.bget.ru/new/img/big_ov.png'>");
+								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_ov.png'>");
 								break;
 							case 'r2':
-								$('.faces').html("<img src='http://imagec1s.bget.ru/new/img/big_pr.png'>");
+								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_pr.png'>");
 								break;
 							case 'r3':
-								$('.faces').html("<img src='http://imagec1s.bget.ru/new/img/big_kr.png'>");
+								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_kr.png'>");
 								break;
 							case 'r4':
-								$('.faces').html("<img src='http://imagec1s.bget.ru/new/img/big_rm.png'>");
+								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_rm.png'>");
 								break;
 							case 'r5':
-								$('.faces').html("<img src='http://imagec1s.bget.ru/new/img/big_kv.png'>");
+								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_kv.png'>");
 								break;
 							case 'r6':
-								$('.faces').html("<img src='http://imagec1s.bget.ru/new/img/big_cr.png'>");
+								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_cr.png'>");
 								break;
 							default:
-								$('.faces').html("<img src='http://imagec1s.bget.ru/new/img/big_pr.png'>");
+								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_pr.png'>");
 							}
 							$('.primary').addClass("ready").removeClass("is-disabled");
 						} else {
@@ -54,7 +54,7 @@ $(function () {
 	} else {
 		$('.image-editor').cropit({
 			imageState: {
-				src: 'http://imagec1s.bget.ru/new/img/sample.png'
+				src: 'http://imagecorp.ru/new/img/sample.png'
 			},
 			onImageLoaded() {
 				$('.primary').addClass("ready").removeClass("is-disabled");
