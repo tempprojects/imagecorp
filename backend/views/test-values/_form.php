@@ -172,9 +172,8 @@ $result_type = Test::findOne($_GET['id'])->getAttribute('result_type_id');
                             ],
                         ],
                     ],
-                ]); 
+                ]);
                 Pjax::end();
-
                 $formMatrix = ActiveForm::begin(['action' => ['test-values/creatematrix'],'options' => ['method' => 'post']]); 
                 ?>
          <div class="row">

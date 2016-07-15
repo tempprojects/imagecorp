@@ -8,9 +8,17 @@ use yii\widgets\ActiveForm;
 <?= $this->render('/_block/_header_payment'); ?>
 
 
+<?php 
+
+foreach ($result as $res): ?>
 <h2>
-    Результат: <?= $result['answer'] ?>
+    Тест: <?= $res['title'] ?>
 </h2>
 <h2>
-   Запрос: <?= $result['query_values'] ?>
+    Результат: <?= $res['result']['answer'] ?>
 </h2>
+<h2>
+   Запрос: <?= $res['result']['query_values'] ?>
+</h2>
+<br><br><br>
+<?php endforeach;?>

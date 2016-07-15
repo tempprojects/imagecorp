@@ -204,7 +204,7 @@ $this->title = 'Корпорация Имиджа | Блог';
                                             break;
                                     }
 //                                    echo '<img  class="blogIndexImg" src="/theme/img/nulled_index_blog.png" style="background-image: url(' . Gallery::findOne(['id' => $blog[$d]->blog_media_id])->src . ')" alt="posts">';
-                                    echo '<span class="reading-number">' . $blog[$d]->like . '</span>';
+                                    echo '<span class="reading-number">' . ($blog[$d]->views?$blog[$d]->views:0) . '</span>';
                                     echo '</div>';
                                     echo '<h3 class="post-title"><a href="'.Url::toRoute(['/blog/view', 'element' => $blog[$d]->alias]).'">' . $blog[$d]->title . '</a></h3>';
                                     echo '<p class="post-content">' . $blog[$d]->description . '</p>';
@@ -322,7 +322,7 @@ $this->title = 'Корпорация Имиджа | Блог';
                                             break;
                                     }
                                     ?>
-                                    <span class="reading-number"><?= $blog[14]->like; ?></span>
+                                  <span class="reading-number"><?= ($blog[14]->views?$blog[14]->views:0)?></span>>
                                 </div>
                                 <h3 class="post-title"><a href="<?= Url::toRoute(['/blog/view', 'element' => $blog[$d]->alias]); ?>"><?= $blog[14]->title; ?></a></h3>
 
@@ -461,7 +461,7 @@ $this->title = 'Корпорация Имиджа | Блог';
 //                                            echo $media->video;
                             break;
                     }
-                    echo '<span class="reading-number">'.$item->like.'</span>';
+                    echo '<span class="reading-number">'.($item->views?$item->views:0).'</span>';
                     echo '</div>';
                     echo '<h3 class="post-title"><a href="'.Url::toRoute(['/blog/view', 'element' => $item->alias]).'">'.$item->title.'</a></h3>';
                     echo '<p class="post-content">'.$item->description.'</p>';

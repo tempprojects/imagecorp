@@ -18,22 +18,18 @@ echo Html::csrfMetaTags();
             <div class="desc"><?= $model->getAttribute('subtitle') ?></div>
             <div class="breadcrumbs is-text-centered">
                 <?php
-                for ($i = 1; $i <= $questionsQuantity; $i++) {
-                    echo "<a href='" . Url::toRoute(['test/test', 'number' => $i]) . "' class='button brd " . (($i <= $currentQuestion) ? "" : "is-disabled") . "'>" . $i . "</a>";
-                }
+                    for ($i = 1; $i <= $questionsQuantity; $i++) {
+                        echo "<a href='" . Url::toRoute(['test/test', 'number' => $i]) . "' class='button brd " . (($i <= $currentQuestion) ? "" : "is-disabled") . "'>" . $i . "</a>";
+                    }
                 ?>
             </div>
         </div>
     </section>
 
     <?php $form = ActiveForm::begin(['action' => ['test/test/*?number=' . ($currentQuestion + 1)], 'options' => ['method' => 'post', 'id' => 'foto_test']]); ?>
- <?php
-        $cnt = count($model->answers);?>
+    <?php $cnt = count($model->answers); ?>
     <section class="section coloring <?= $cnt? ($model->answers[0]->getAttribute('title')?$model->answers[0]->getAttribute('title'):""):""?>">
-        <?php
-
-        if ($cnt):
-            ?>
+        <?php if($cnt): ?>
             <div class="columns is-mobile is-multiline">
                 <div class="column is-half">
                     <div class="cropper is-pulled-right">

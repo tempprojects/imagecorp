@@ -67,18 +67,26 @@ $this->endBlock();
                 [
                     'header' => Yii::t('user', 'Все значения теста'),
                     'value' => function ($model) {
-
+                        if($model->getAttribute('result_type_id')!=3){
                             return Html::a(Yii::t('user', 'Все значения (' . count($model->testValues) . ')'), ['test-values/create', 'id' => $model->id], [
                                 'class' => 'btn btn-xs btn-success btn-block',
                             ]);
+                        }
+                        else{
+                            return "Тип теста: " . $model->resultType->getAttribute('title');
+                        }
                     },
                     'format' => 'raw',
                 ],
                 [
                     'header' => Yii::t('user', 'Количество вопросов'),
                     'value' => function ($model) {
-                        //return  "<a href='" . $model->id . "'> " . count($model->question) . " вопросов</a>";
-                        return Html::a('Количество вопросов: ' . count($model->question), ['question/test', 'id' => $model->id], ['title' => Yii::t('app', 'Количество вопросов')]);
+                         if($model->getAttribute('result_type_id')!=3){
+                            return Html::a('Количество вопросов: ' . count($model->question), ['question/test', 'id' => $model->id], ['title' => Yii::t('app', 'Количество вопросов')]);
+                         }
+                         else{
+                             return "Тип теста: " . $model->resultType->getAttribute('title');
+                         }
                     },
                     'format' => 'raw',
                 ],

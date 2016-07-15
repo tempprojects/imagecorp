@@ -14,6 +14,17 @@ use common\models\database\Blog;
 */
 class SiteController extends Controller
 {
+    
+    public function actions()
+    {
+        Yii::$app->view->registerCssFile('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+
     /**
      * Displays homepage.
      *

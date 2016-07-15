@@ -48,5 +48,4 @@ $img = Gallery::findOne(['id' => $model->img]);
             </div>
         </div>
     </section>
-
 </div>

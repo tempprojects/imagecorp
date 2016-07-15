@@ -42,10 +42,12 @@ class BlogController extends \yii\web\Controller
             Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $model->getAttribute('meta_title')]);
             Yii::$app->view->registerMetaTag(['name' => 'keys', 'content' => $model->getAttribute('meta_keys')]);
         }
-
+        else {
+            throw new \yii\web\NotFoundHttpException("Статья не найдена!");
+        }
         return $this->render('view',[
-            'model' => $model,
-            'also' => $also,
-        ]);
+               'model' => $model,
+               'also' => $also,
+           ]);
     }
 }
