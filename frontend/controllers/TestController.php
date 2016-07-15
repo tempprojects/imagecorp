@@ -325,6 +325,7 @@ class TestController extends Controller
                 }
 
                 asort($resultArr);
+                end($resultArr);
                 $result = key($resultArr);
 
                 $query = new Query;

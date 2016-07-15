@@ -46,7 +46,7 @@ echo Html::csrfMetaTags();
                             <div class="columns is-mobile is-multiline content-center">
                         <?php endif; ?>
                             <div class="column is-flex is-3">
-                                <div class="box style<?= $styleClass? "1": ""?>">
+                                <div class="box style<?= !$styleClass? "1": ""?>">
                                     <div class="is-block media-content is-text-centered">
                                         <?= $answer->getAttribute('description') ?>
                                     </div>
