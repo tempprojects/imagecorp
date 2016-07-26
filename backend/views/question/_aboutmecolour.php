@@ -84,4 +84,3 @@ SCRIPT;
     </div>
     <?php ActiveForm::end(); ?>
 </div>
-<?php $this->registerJsFile('js/myscript.js', ['depends' => 'frontend\assets\AppAsset']); ?>
