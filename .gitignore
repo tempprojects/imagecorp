@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+tests/
+vagrant/
+vendor/
+backend/web/assets/
+backend/runtime/
+frontend/web/assets/
+frontend/runtime/
+console/runtime/
