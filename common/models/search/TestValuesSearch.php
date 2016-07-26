@@ -1,5 +1,4 @@
 <?php
-
 namespace common\models\search;
 
 use Yii;
@@ -58,7 +57,7 @@ class TestValuesSearch extends TestValues
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        // grid filtering conditions        
         $query->andFilterWhere([
             'id' => $this->id,
             'test_id' => $this->test_id,
@@ -72,3 +71,4 @@ class TestValuesSearch extends TestValues
         return $dataProvider;
     }
 }
+

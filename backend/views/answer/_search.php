@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-
+    
     <?= $form->field($model, 'id') ?>
 
     <?= $form->field($model, 'question_id') ?>
@@ -39,3 +39,4 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+

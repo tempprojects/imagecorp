@@ -74,4 +74,3 @@ echo Html::csrfMetaTags();
     <div class="container"></div>
 </footer>
 <!-- /End -->
-

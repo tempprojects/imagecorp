@@ -90,5 +90,4 @@ echo Html::csrfMetaTags();
 	<!-- /Main Content -->
 	<footer>
 		<div class="container"></div>
-	</footer>
-	<!-- /End -->
+	</footer>  

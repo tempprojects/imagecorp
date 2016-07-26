@@ -25,16 +25,16 @@ $this->endBlock();
     </div>
     <div class="box-body">
 
-<div class="question-create">
+		<div class="question-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php
+			<h1><?= Html::encode($this->title) ?></h1>
+			<?php
 
-        echo  $this->render($template, [
-            'answers_models' => $answers_models,
-            'id' => $id,
-            'isNew'=>false,
-        ]); 
-   ?> 
-</div>
-        </div>
+				echo  $this->render($template, [
+					'answers_models' => $answers_models,
+					'id' => $id,
+					'isNew'=>false,
+				]); 
+		   ?> 
+		</div>
+    </div>

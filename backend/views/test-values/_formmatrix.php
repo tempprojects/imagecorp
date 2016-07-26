@@ -44,14 +44,14 @@ use yii\widgets\Pjax;
         <?php 
             $cnt= 0; 
             foreach ($ownModel as $key => $value) {
-
+                
                 if(!$cnt):?>
                 <th class ="rotate" rowspan="<?= count($ownModel) + 1 ?>"><div class="verticalText"><?= $questionV->getAttribute('subtitle')?></div></th>
                 <?php $cnt++;
                 endif;
-
+                
                 echo "<tr><th>{$key}</th>";
-
+                
                 foreach ($value as $k => $v){
                     echo  "<td>".  Html::dropDownList('TestValuesMatrix[serialize][' .$key . '][' . $k . ']', $v, $testValues, ['class' => 'form-control']) . "</td>";
                 }

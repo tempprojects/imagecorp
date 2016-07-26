@@ -5,52 +5,50 @@ $(function () {
 		return $(this).length;
 	};
 	if ($('.face').existing()) {
-		$('.image-editor').cropit({
-			imageState: {
-				src: 'http://imagecorp.ru/theme/img/sample1.png'
-			}, 
-			onImageLoaded() {
-				//$('.primary').addClass("ready").removeClass("is-disabled");
-				$(function () {
-					$('.primary').addClass("is-disabled").removeClass("ready");
-					$("input[type=radio]").change(function () {
-						var $inputs4 = $(this);
-						if ($inputs4.is(':checked')) {
-							var inputid = $(this).attr('id');
-							switch (inputid) {
-							case 'r1':
-								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_ov.png'>");
-								break;
-							case 'r2':
-								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_pr.png'>");
-								break;
-							case 'r3':
-								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_kr.png'>");
-								break;
-							case 'r4':
-								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_rm.png'>");
-								break;
-							case 'r5':
-								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_kv.png'>");
-								break;
-							case 'r6':
-								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_cr.png'>");
-								break;
-							default:
-								$('.faces').html("<img src='http://imagecorp.ru/theme/img/big_pr.png'>");
-							}
-							$('.primary').addClass("ready").removeClass("is-disabled");
-						} else {
-							$('.primary').addClass("is-disabled").removeClass("ready");
-						}
-					}).change();
-				});
-			}
-		});
-		var htmlfaces = "<div class='faces is-overlay'></div>";
-		$('.cropit-preview .cropit-preview-image-container').after(htmlfaces);
-
-
+            $('.image-editor').cropit({
+                imageState: {
+                    src: 'http://imagecorp.ru/theme/img/sample1.png'
+                }, 
+                onImageLoaded() {
+                    //$('.primary').addClass("ready").removeClass("is-disabled");
+                    $(function () {
+                        $('.primary').addClass("is-disabled").removeClass("ready");
+                        $("input[type=radio]").change(function () {
+                            var $inputs4 = $(this);
+                            if ($inputs4.is(':checked')) {
+                                var inputid = $(this).attr('id');
+                                switch (inputid) {
+                                case 'r1':
+                                    $('.faces').html("<img src='http://imagecorp.ru/theme/img/big_ov.png'>");
+                                    break;
+                                case 'r2':
+                                    $('.faces').html("<img src='http://imagecorp.ru/theme/img/big_pr.png'>");
+                                    break;
+                                case 'r3':
+                                    $('.faces').html("<img src='http://imagecorp.ru/theme/img/big_kr.png'>");
+                                    break;
+                                case 'r4':
+                                    $('.faces').html("<img src='http://imagecorp.ru/theme/img/big_rm.png'>");
+                                    break;
+                                case 'r5':
+                                    $('.faces').html("<img src='http://imagecorp.ru/theme/img/big_kv.png'>");
+                                    break;
+                                case 'r6':
+                                    $('.faces').html("<img src='http://imagecorp.ru/theme/img/big_cr.png'>");
+                                    break;
+                                default:
+                                    $('.faces').html("<img src='http://imagecorp.ru/theme/img/big_pr.png'>");
+                                }
+                                $('.primary').addClass("ready").removeClass("is-disabled");
+                            } else {
+                                $('.primary').addClass("is-disabled").removeClass("ready");
+                            }
+                        }).change();
+                    });
+                }
+            });
+            var htmlfaces = "<div class='faces is-overlay'></div>";
+            $('.cropit-preview .cropit-preview-image-container').after(htmlfaces);
 	} else {
 		$('.image-editor').cropit({
 			imageState: {

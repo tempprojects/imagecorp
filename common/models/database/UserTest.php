@@ -1,5 +1,4 @@
 <?php
-
 namespace common\models\database;
 
 use Yii;
@@ -29,7 +28,7 @@ class UserTest extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function rules()
-    {
+    {   
         return [
             [['user_id', 'test_value_id'], 'required'],
             [['user_id', 'test_value_id', 'pay_flag'], 'integer'],

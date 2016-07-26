@@ -67,7 +67,6 @@ class TestValuesMatrixSearch extends TestValuesMatrix
         ]);
 
         $query->andFilterWhere(['like', 'serialize', $this->serialize]);
-
         return $dataProvider;
     }
 }

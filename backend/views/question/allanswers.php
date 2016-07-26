@@ -25,7 +25,7 @@ use yii\grid\GridView;
                       echo Html::a('Добавить ответ к вопросу №' . $id , ['question/addanswer', 'id' => $id] , ['class' => 'btn btn-success']);
                 }
             }
-
+            
             else {
 
                 echo Html::a('Добавить ответ к вопросу №' . $id, ['question/addanswer', 'id' => $id], ['class' => 'btn btn-success']);

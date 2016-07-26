@@ -12,8 +12,7 @@ use yii\data\Pagination;
 <?= $this->render('/_block/_header_payment'); ?>
 
 
-<?php // print_r($dataProvider->getModels());die;
-foreach ($result as $res): ?>
+<?php foreach ($result as $res): ?>
     <h2>
         Тест: <?= $res['title'] ?>
     </h2>
@@ -117,9 +116,3 @@ foreach ($result as $res): ?>
                   <?php Pjax::end(); ?>
         </div>
     </section>
-               
-
-               
-  
-
-

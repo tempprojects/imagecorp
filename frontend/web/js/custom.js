@@ -18,6 +18,7 @@ jQuery(document).ready(function ($) {
 
 
 });
+
 jQuery(document).ready(function ($) {
     $('.color-list li input').click(function(){
         console.log($ (this).attr('data-value'));
@@ -25,3 +26,4 @@ jQuery(document).ready(function ($) {
     
     
 });
+

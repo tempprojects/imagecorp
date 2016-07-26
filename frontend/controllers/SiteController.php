@@ -66,9 +66,9 @@ class SiteController extends Controller
 
         $seoBlock = Content::findOne(['id' => 2]);
         //meta
-//        Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $seoBlock->getAttribute('meta_description')]);
-//        Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $seoBlock->getAttribute('meta_title')]);
-//        Yii::$app->view->registerMetaTag(['name' => 'keys', 'content' => $seoBlock->getAttribute('meta_keys')]);
+        Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $seoBlock->getAttribute('meta_description')]);
+        Yii::$app->view->registerMetaTag(['name' => 'title', 'content' => $seoBlock->getAttribute('meta_title')]);
+		Yii::$app->view->registerMetaTag(['name' => 'keys', 'content' => $seoBlock->getAttribute('meta_keys')]);
 
         return $this->render('list-test', [
             'female' => $female,
@@ -77,4 +77,4 @@ class SiteController extends Controller
             'seoBlock' => $seoBlock,
         ]);
     }
-}
+} 

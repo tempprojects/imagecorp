@@ -1,5 +1,4 @@
 <?php
-
 namespace common\models\database;
 
 use Yii;
@@ -64,7 +63,6 @@ class QuestionTypeSearch extends QuestionType
 
         $query->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'description', $this->description]);
-
         return $dataProvider;
     }
 }
